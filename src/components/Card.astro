@@ -1,0 +1,11 @@
+---
+export type Props = {
+  className?: string
+}
+
+const { className } = Astro.props
+---
+
+<div class="rounded-2xl bg-slate-300 p-8" class:list={className}>
+  <slot />
+</div>

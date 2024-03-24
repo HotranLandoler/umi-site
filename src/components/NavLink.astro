@@ -1,0 +1,11 @@
+---
+export interface Props {
+  href: string
+}
+
+const { href } = Astro.props
+---
+
+<a class="block w-full py-2 transition-transform hover:translate-x-2" {href}>
+  <slot />
+</a>

@@ -1,16 +1,27 @@
 ---
-
+import Card from "~/components/Card.astro"
+import BaseLayout from "~/layouts/BaseLayout.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Card>
+    <main class="grid h-full grid-cols-[1fr_auto] gap-8">
+      <div class="grid grid-rows-[1fr_auto] gap-4">
+        <div class="flex items-end">
+          <h1 class="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
+        </div>
+        <div class="flex gap-8">
+          <div class="min-h-32 min-w-32 rounded-full bg-slate-700"></div>
+          <p>
+            欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
+          </p>
+        </div>
+      </div>
+      <aside class="grid grid-rows-3 gap-4">
+        <Card className="min-w-64 bg-slate-700" />
+        <Card className="min-w-64 bg-slate-700" />
+        <Card className="min-w-64 bg-slate-700" />
+      </aside>
+    </main>
+  </Card>
+</BaseLayout>
