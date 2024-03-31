@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Search from "../search";
+import { Suspense } from "react";
 
 export default function MainHeader() {
   return (
     <header className="mb-4 flex rounded-lg bg-slate-100 px-12 py-4">
-      <Search />
+      <Suspense>
+        <Search />
+      </Suspense>
       <LoginButtons />
     </header>
   );
