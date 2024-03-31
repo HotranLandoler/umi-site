@@ -1,0 +1,12 @@
+---
+import Card from "./Card.astro"
+
+export interface Props {
+  content: string
+}
+const { content } = Astro.props
+---
+
+<Card>
+  {content}
+</Card>

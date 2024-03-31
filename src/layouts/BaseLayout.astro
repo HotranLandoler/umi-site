@@ -17,6 +17,13 @@ import SearchBar from "~/components/SearchBar.astro"
     <meta name="generator" content={Astro.generator} />
     <title>UMi游研社</title>
   </head>
+  <script>
+    if ("paintWorklet" in CSS) {
+      CSS.paintWorklet.addModule(
+        "https://www.unpkg.com/css-houdini-squircle/squircle.min.js",
+      )
+    }
+  </script>
   <body>
     <div class="mb-8 flex min-h-screen flex-row gap-4 p-4">
       <div class="min-w-64 flex-col items-center gap-4 p-8">

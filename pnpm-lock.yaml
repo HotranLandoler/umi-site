@@ -17,6 +17,9 @@ dependencies:
   astro-icon:
     specifier: ^1.1.0
     version: 1.1.0
+  css-houdini-squircle:
+    specifier: ^0.3.0
+    version: 0.3.0
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -1781,6 +1784,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: false
+
+  /css-houdini-squircle@0.3.0:
+    resolution: {integrity: sha512-n2chEz56BlfBVuPD1PkdXQPIxP0Uys0vC4jIgaxCjFu8rkt0KVRDKyy41t1EDg2ZWEQkdX8AGKW3Vk7f3PgxZA==}
     dev: false
 
   /css-select@5.1.0:
