@@ -1,16 +1,27 @@
-import Image from "next/image";
+import GameCard from "@/components/game-card";
+import { GameMeta, fetchGameMetas } from "@/lib/data";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const gameMetas = await fetchGameMetas();
+
   return (
     <main className="rounded-lg bg-slate-100 p-12">
       <Hero />
       <section>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ea ad,
-          asperiores quia odit molestiae, harum unde natus quam vitae eaque
-          accusamus dolore cumque repudiandae perspiciatis eos sint obcaecati
-          cum.
-        </p>
+        <header className="mb-4 flex items-center gap-8">
+          <h2 className="text-2xl font-bold">我们的游戏</h2>
+          <Link
+            className="rounded-full border-2 border-slate-500 px-4 py-1"
+            href="#">
+            全部游戏 {"->"}
+          </Link>
+        </header>
+        <div className="grid grid-cols-4 gap-4">
+          {gameMetas.map(function renderGameCard(gameMeta: GameMeta) {
+            return <GameCard key={gameMeta.name} gameMeta={gameMeta} />;
+          })}
+        </div>
       </section>
     </main>
   );
@@ -18,7 +29,7 @@ export default function Home() {
 
 function Hero() {
   return (
-    <div className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
+    <div className="mb-24 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
       <div className="flex items-end">
         <h1 className="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
       </div>
