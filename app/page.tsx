@@ -2,7 +2,23 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12 rounded-lg bg-slate-100 p-12">
+    <main className="rounded-lg bg-slate-100 p-12">
+      <Hero />
+      <section>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ea ad,
+          asperiores quia odit molestiae, harum unde natus quam vitae eaque
+          accusamus dolore cumque repudiandae perspiciatis eos sint obcaecati
+          cum.
+        </p>
+      </section>
+    </main>
+  );
+}
+
+function Hero() {
+  return (
+    <div className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
       <div className="flex items-end">
         <h1 className="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
       </div>
@@ -17,6 +33,6 @@ export default function Home() {
           欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
         </p>
       </div>
-    </main>
+    </div>
   );
 }

@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="grid min-h-screen grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 py-4">
+    <html lang="zh">
+      <body className="grid min-h-screen grid-cols-[1fr_4fr] grid-rows-[auto_1fr] gap-4 px-8">
         <SideBar />
         <MainHeader />
         {children}

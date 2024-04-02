@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function SideBar() {
   return (
-    <div className="row-span-2 p-16 pl-28">
+    <div className="sticky top-0 row-span-2 self-start p-16 pl-28">
       <Header />
       <Nav />
     </div>
