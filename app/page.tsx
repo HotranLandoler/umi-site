@@ -29,7 +29,7 @@ export default async function Home() {
 
 function Hero() {
   return (
-    <div className="mb-24 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
+    <div className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
       <div className="flex items-end">
         <h1 className="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
       </div>
