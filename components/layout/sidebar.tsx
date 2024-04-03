@@ -14,14 +14,16 @@ export default function SideBar() {
 function Header() {
   return (
     <header className="mb-8 text-center">
-      <Image
-        className="mx-auto mb-2 h-auto w-full rounded-full bg-slate-500"
-        src=""
-        width={100}
-        height={100}
-        alt="黑色的背景上有小熊星座的六颗白星"
-      />
-      <h2 className="mb-2 text-2xl font-bold">UMi游研社</h2>
+      <Link href="/">
+        <Image
+          className="mx-auto mb-2 h-auto w-full rounded-full bg-slate-500 text-white"
+          src=""
+          width={100}
+          height={100}
+          alt="黑色的背景上有小熊星座的六颗白星"
+        />
+        <h2 className="mb-2 text-2xl font-bold">UMi游研社</h2>
+      </Link>
       <SocialLinks />
     </header>
   );
