@@ -2,6 +2,8 @@ import Image from "next/image";
 import SocialLinks from "../social-links";
 import Link from "next/link";
 
+import logo from "@/app/icon.svg";
+
 export default function SideBar() {
   return (
     <div className="sticky top-0 row-span-2 self-start p-16 pl-28">
@@ -17,9 +19,7 @@ function Header() {
       <Link href="/">
         <Image
           className="mx-auto mb-2 h-auto w-full rounded-full bg-slate-500 text-white"
-          src=""
-          width={100}
-          height={100}
+          src={logo}
           alt="黑色的背景上有小熊星座的六颗白星"
         />
         <h2 className="mb-2 text-2xl font-bold">UMi游研社</h2>
