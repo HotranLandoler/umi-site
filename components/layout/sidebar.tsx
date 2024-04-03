@@ -32,10 +32,11 @@ function Header() {
 function Nav() {
   return (
     <nav>
-      <ul className="flex flex-col gap-2">
-        <li className="font-bold">
-          <NavLink href="#">UMi数据库</NavLink>
+      <ul className="flex flex-col gap-4">
+        <li>
+          <NavLink href="#">首页</NavLink>
         </li>
+        <SplitLine />
         <li>
           <NavLink href="#">游戏库</NavLink>
         </li>
@@ -48,10 +49,11 @@ function Nav() {
         <li>
           <NavLink href="#">岁月史书</NavLink>
         </li>
-        <li className="font-bold">
+        <SplitLine />
+        <li>
           <NavLink href="#">UMi的游戏</NavLink>
         </li>
-        <li className="font-bold">
+        <li>
           <NavLink href="#">关于我们</NavLink>
         </li>
       </ul>
@@ -72,5 +74,13 @@ function NavLink({
       className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300">
       {children}
     </Link>
+  );
+}
+
+function SplitLine() {
+  return (
+    <li>
+      <hr className="w-full border border-slate-300" aria-hidden />
+    </li>
   );
 }
