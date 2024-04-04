@@ -1,50 +1,29 @@
+import { feed, gameMetas } from "./placeholder-data";
+
 export type GameMeta = {
   name: string;
   imageSrc: string;
   isNew: boolean;
 };
 
+export type BlogItem = {
+  id: number;
+  category: string;
+  imageSrc: string;
+  author: string;
+  publishTime: Date;
+  title: string;
+  content: string;
+  tags: string[];
+  comments: string[];
+  likes: number;
+  reading: number;
+};
+
 export async function fetchGameMetas(): Promise<GameMeta[]> {
-  return [
-    {
-      name: "Poopy Bird",
-      imageSrc: "",
-      isNew: true,
-    },
-    {
-      name: "死亡地带",
-      imageSrc: "",
-      isNew: true,
-    },
-    {
-      name: "Belt Rush",
-      imageSrc: "",
-      isNew: false,
-    },
-    {
-      name: "吃土",
-      imageSrc: "",
-      isNew: false,
-    },
-    {
-      name: "Poopy Bird2",
-      imageSrc: "",
-      isNew: false,
-    },
-    {
-      name: "死亡地带2",
-      imageSrc: "",
-      isNew: false,
-    },
-    {
-      name: "Belt Rush2",
-      imageSrc: "",
-      isNew: false,
-    },
-    {
-      name: "吃土2",
-      imageSrc: "",
-      isNew: false,
-    },
-  ];
+  return gameMetas;
+}
+
+export async function fetchFeed(): Promise<BlogItem[]> {
+  return feed;
 }
