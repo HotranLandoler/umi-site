@@ -75,7 +75,7 @@ function Nav() {
 function SplitLine() {
   return (
     <li>
-      <hr className="w-full border border-slate-300" aria-hidden />
+      <hr className="w-full border border-slate-100" aria-hidden />
     </li>
   );
 }

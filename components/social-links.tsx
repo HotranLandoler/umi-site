@@ -2,7 +2,7 @@ import BilibiliLogo from "./icons/bilibili";
 import QQLogo from "./icons/qq";
 
 export default function SocialLinks() {
-  const logoClassName = "w-8 h-auto";
+  const logoClassName = "w-6 h-auto";
 
   return (
     <ul className="flex justify-center gap-2">
@@ -30,7 +30,7 @@ function SocialLink({
   return (
     <li>
       <a
-        className="transition-opacity hover:opacity-50"
+        className="opacity-50 transition-opacity hover:opacity-100"
         target="_blank"
         rel="noopener noreferer"
         href={href}

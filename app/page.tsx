@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <main className="rounded-[2rem] bg-slate-100 p-12">
+    <div className="mb-12 rounded-[2rem] bg-slate-100 p-12">
       <Hero />
       <OurGames />
       <Feed />
-    </main>
+    </div>
   );
 }
 

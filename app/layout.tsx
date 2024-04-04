@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SideBar from "@/components/layout/sidebar";
 import MainHeader from "@/components/layout/main-header";
+import MainFooter from "@/components/layout/main-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,10 @@ export default function RootLayout({
       <body className="grid grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4">
         <SideBar />
         <MainHeader />
-        {children}
+        <main>
+          {children}
+          <MainFooter />
+        </main>
       </body>
     </html>
   );
