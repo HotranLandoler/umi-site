@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh">
-      <body className="grid min-h-screen grid-cols-[1fr_4fr] grid-rows-[auto_1fr] gap-4 px-8">
+      <body className="grid h-screen grid-cols-[1fr_4fr] grid-rows-[auto_1fr] gap-4 px-8 pb-4">
         <SideBar />
         <MainHeader />
         {children}

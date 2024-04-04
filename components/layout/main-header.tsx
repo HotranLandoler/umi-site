@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function MainHeader() {
   return (
-    <header className="sticky top-4 z-10 mb-4 flex rounded-full bg-slate-100 px-12 py-4 shadow-lg">
+    <header className="sticky top-4 mb-4 flex rounded-lg bg-slate-100 px-12 py-4">
       <Suspense>
         <Search />
       </Suspense>
