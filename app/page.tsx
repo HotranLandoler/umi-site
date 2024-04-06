@@ -1,3 +1,4 @@
+import Hero from "@/components/layout/hero";
 import BlogCard from "@/components/blog-card";
 import GameCard from "@/components/game-card";
 import { GameMeta, fetchFeed, fetchGameMetas } from "@/lib/data";
@@ -10,27 +11,6 @@ export default async function Home() {
       <OurGames />
       <Feed />
     </div>
-  );
-}
-
-function Hero() {
-  return (
-    <section className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-12">
-      <div className="flex items-end">
-        <h1 className="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
-      </div>
-      <ul className="row-span-2 grid grid-rows-3 gap-8">
-        <li className="min-w-32 rounded-2xl bg-slate-500"></li>
-        <li className="min-w-32 rounded-2xl bg-slate-500"></li>
-        <li className="min-w-32 rounded-2xl bg-slate-500"></li>
-      </ul>
-      <div className="flex gap-8">
-        <div className="aspect-square min-h-32 rounded-full bg-slate-500"></div>
-        <p>
-          欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
-        </p>
-      </div>
-    </section>
   );
 }
 

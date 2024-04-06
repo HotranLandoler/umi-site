@@ -12,7 +12,7 @@ export default function MainHeader() {
         <LoginButtons />
       </header>
       <RoundedCornerImage className="left-0 rotate-90" />
-      <RoundedCornerImage className="right-[-1px] rotate-180" />
+      <RoundedCornerImage className="right-0 rotate-180" />
     </div>
   );
 }
