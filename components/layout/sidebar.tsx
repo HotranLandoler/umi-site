@@ -10,7 +10,7 @@ import { styleOnCondition } from "@/lib/utils";
 
 export default function SideBar() {
   return (
-    <div className="sticky top-0 row-span-2 self-start p-16 pl-28">
+    <div className="sticky top-0 row-span-2 self-start p-16">
       <Header />
       <Nav />
     </div>
@@ -22,7 +22,7 @@ function Header() {
     <header className="mb-8 text-center">
       <Link href="/">
         <Image
-          className="mx-auto mb-2 h-auto w-full rounded-full bg-slate-500 text-white"
+          className="mx-auto mb-2 h-auto max-w-32 rounded-full bg-slate-500 text-white"
           src={logo}
           alt="黑色的背景上有小熊星座的六颗白星"
         />
