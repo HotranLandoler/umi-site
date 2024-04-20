@@ -60,11 +60,10 @@ function Nav() {
     children: React.ReactNode;
   }) {
     return (
-      <li
-        className={`rounded-lg px-4 py-2 ${styleOnCondition("bg-slate-100", pathName === href)}`}>
+      <li>
         <Link
           href={href}
-          className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300">
+          className={`block rounded-lg px-4 py-2 ${styleOnCondition("bg-slate-200", pathName === href)} ${styleOnCondition("hover:bg-slate-100", pathName !== href)}`}>
           {children}
         </Link>
       </li>
