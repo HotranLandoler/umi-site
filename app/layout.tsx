@@ -23,7 +23,9 @@ export default function RootLayout({
         <SideBar />
         <MainHeader />
         <main>
-          {children}
+          <div className="mb-12 rounded-[2rem] bg-slate-100 p-12">
+            {children}
+          </div>
           <MainFooter />
         </main>
       </body>

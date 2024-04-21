@@ -46,7 +46,7 @@ function Nav() {
         <NavLink href="#">工具资源库</NavLink>
         <NavLink href="#">岁月史书</NavLink>
         <SplitLine />
-        <NavLink href="#">UMi的游戏</NavLink>
+        <NavLink href="/games">UMi的游戏</NavLink>
         <NavLink href="#">关于我们</NavLink>
       </ul>
     </nav>

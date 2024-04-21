@@ -43,10 +43,10 @@ function RoundedCornerImage({ className }: { className: string }) {
       viewBox="0 0 35 35"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0)">
+      <g clipPath="url(#clip0)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M0 0V35L35 35C15.6701 35 0 19.33 0 0Z"
         />
       </g>

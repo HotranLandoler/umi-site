@@ -1,41 +1,49 @@
 export const gameMetas = [
   {
     name: "Poopy Bird",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: true,
   },
   {
     name: "死亡地带",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: true,
   },
   {
     name: "Belt Rush",
-    imageSrc: "",
+    slug: "poopy-bird",
+    imageSrc: "/examples/BeltRush.webp",
     isNew: false,
   },
   {
     name: "吃土",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: false,
   },
   {
     name: "Poopy Bird2",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: false,
   },
   {
     name: "死亡地带2",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: false,
   },
   {
     name: "Belt Rush2",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: false,
   },
   {
     name: "吃土2",
+    slug: "poopy-bird",
     imageSrc: "",
     isNew: false,
   },

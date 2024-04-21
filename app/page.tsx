@@ -1,37 +1,34 @@
 import Hero from "@/components/layout/hero";
 import BlogCard from "@/components/blog-card";
-import GameCard from "@/components/game-card";
-import { GameMeta, fetchFeed, fetchGameMetas } from "@/lib/data";
+import { fetchFeed, getAllGames } from "@/lib/data";
 import Link from "next/link";
+import Games from "@/components/games/games";
 
 export default async function Home() {
   return (
-    <div className="mb-12 rounded-[2rem] bg-slate-100 p-12">
+    <>
       <Hero />
       <OurGames />
       <Feed />
-    </div>
+    </>
   );
 }
 
 async function OurGames() {
-  const gameMetas = await fetchGameMetas();
+  const showGamesCount = 8;
+  const games = getAllGames().slice(0, showGamesCount);
 
   return (
     <section className="mb-16">
       <header className="mb-4 flex items-center gap-8">
-        <h2 className="text-2xl font-bold">我们的游戏</h2>
+        <h2 className="text-2xl font-bold">UMi的游戏</h2>
         <Link
           className="rounded-full border-2 border-slate-500 px-4 py-1"
-          href="#">
+          href="/games">
           全部游戏 {"->"}
         </Link>
       </header>
-      <div className="grid grid-cols-4 gap-4">
-        {gameMetas.map(function renderGameCard(gameMeta: GameMeta) {
-          return <GameCard key={gameMeta.name} gameMeta={gameMeta} />;
-        })}
-      </div>
+      <Games games={games} />
     </section>
   );
 }

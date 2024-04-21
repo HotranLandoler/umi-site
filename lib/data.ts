@@ -1,10 +1,7 @@
-import { feed, gameMetas } from "./placeholder-data";
-
-export type GameMeta = {
-  name: string;
-  imageSrc: string;
-  isNew: boolean;
-};
+import path from "path";
+import type { GameMeta } from "./interfaces";
+import { feed } from "./placeholder-data";
+import { getMDXData } from "./mdx-parser";
 
 export type BlogItem = {
   id: number;
@@ -49,10 +46,16 @@ export const mainSections: PageData[] = [
   },
 ];
 
-export async function fetchGameMetas(): Promise<GameMeta[]> {
-  return gameMetas;
-}
-
 export async function fetchFeed(): Promise<BlogItem[]> {
   return feed;
+}
+
+export function getAllGames() {
+  const dir = path.join(process.cwd(), "app", "games", "pages");
+  return getMDXData<GameMeta>(dir).sort(function sortByReleaseDate(a, b) {
+    if (new Date(a.metadata.releaseDate) > new Date(b.metadata.releaseDate)) {
+      return -1;
+    }
+    return 1;
+  });
 }
