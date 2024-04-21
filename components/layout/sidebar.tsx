@@ -10,9 +10,11 @@ import { styleOnCondition } from "@/lib/utils";
 
 export default function SideBar() {
   return (
-    <div className="sticky top-0 row-span-2 self-start p-16">
-      <Header />
-      <Nav />
+    <div className="sticky top-4 row-span-2 max-h-screen self-start">
+      <div className="mx-auto max-w-32">
+        <Header />
+        <Nav />
+      </div>
     </div>
   );
 }
@@ -22,7 +24,7 @@ function Header() {
     <header className="mb-8 text-center">
       <Link href="/">
         <Image
-          className="mx-auto mb-2 h-auto max-w-32 rounded-full bg-slate-500 text-white"
+          className="mx-auto mb-2 w-full rounded-full bg-slate-500 text-white"
           src={logo}
           alt="黑色的背景上有小熊星座的六颗白星"
         />
@@ -38,7 +40,7 @@ function Nav() {
 
   return (
     <nav>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-1">
         <NavLink href="/">首页</NavLink>
         <SplitLine />
         <NavLink href="#">游戏库</NavLink>
