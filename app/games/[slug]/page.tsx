@@ -1,15 +1,13 @@
 import { notFound } from "next/navigation";
 import { getAllGames } from "@/lib/data";
 import { baseUrl } from "@/app/sitemap";
+import Image from "next/image";
 
 type Props = {
   params: {
     slug: string;
   };
 };
-
-// TODO
-export const runtime = "edge";
 
 export async function generateStaticParams() {
   let games = getAllGames();
@@ -70,7 +68,44 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <article>
-      <h1 className="text-3xl font-bold">{game.metadata.title}</h1>
+      <header className="mb-8 grid grid-cols-[2fr_3fr] gap-8">
+        <div>
+          <h1 className="mb-4 text-3xl font-bold">{game.metadata.title}</h1>
+          <p className="mb-8">{game.metadata.excerpt}</p>
+          <dl className="grid grid-cols-2">
+            <dt>发布日期</dt>
+            <dd>{game.metadata.releaseDate}</dd>
+            <dt>开发团队</dt>
+            <dd>
+              <ul>
+                {game.metadata.authors.map(function renderAuthor(author) {
+                  return (
+                    <li
+                      key={author.name}>{`${author.name}：${author.role}`}</li>
+                  );
+                })}
+              </ul>
+            </dd>
+            <dt>试玩/下载链接</dt>
+            <dd>
+              <a
+                className="text-slate-700 underline"
+                href={game.metadata.link}
+                target="_blank"
+                rel="noopener noreferer">
+                {game.metadata.link}
+              </a>
+            </dd>
+          </dl>
+        </div>
+        <Image
+          className="w-full rounded-2xl"
+          src={game.metadata.bannerImage}
+          width={1280}
+          height={720}
+          alt={`Image for game ${game.metadata.title}`}
+        />
+      </header>
       <p>{game.content}</p>
     </article>
   );

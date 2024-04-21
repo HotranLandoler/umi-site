@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
 
 export function getMDXData<TMetaData>(dir: string) {
   let mdxFiles = fs.readdirSync(dir).filter(function isMdx(file) {
@@ -19,19 +20,7 @@ export function getMDXData<TMetaData>(dir: string) {
 }
 
 export function parseFrontmatter<TMetaData>(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, "").trim();
-  let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<TMetaData> = {};
+  let { data, content } = matter(fileContent);
 
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof TMetaData] = value as any;
-  });
-
-  return { metadata: metadata as TMetaData, content };
+  return { metadata: data as TMetaData, content };
 }
