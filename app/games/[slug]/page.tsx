@@ -8,6 +8,9 @@ type Props = {
   };
 };
 
+// TODO
+export const runtime = "edge";
+
 export async function generateStaticParams() {
   let games = getAllGames();
 
