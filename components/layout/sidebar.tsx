@@ -1,19 +1,18 @@
-"use client";
-
 import Image from "next/image";
-import SocialLinks from "../social-links";
 import Link from "next/link";
 
+import SocialLinks from "../social-links";
+import Nav from "../nav";
+
 import logo from "@/app/icon.svg";
-import { usePathname } from "next/navigation";
-import { styleOnCondition } from "@/lib/utils";
+import { umiDbSections } from "@/lib/data";
 
 export default function SideBar() {
   return (
     <div className="sticky top-4 row-span-2 max-h-screen self-start">
       <div className="mx-auto max-w-32">
         <Header />
-        <Nav />
+        <Nav umiDbSections={umiDbSections} />
       </div>
     </div>
   );
@@ -32,51 +31,5 @@ function Header() {
       </Link>
       <SocialLinks />
     </header>
-  );
-}
-
-function Nav() {
-  const pathName = usePathname();
-
-  return (
-    <nav>
-      <ul className="flex flex-col gap-1">
-        <NavLink href="/">首页</NavLink>
-        <SplitLine />
-        <NavLink href="#">游戏库</NavLink>
-        <NavLink href="#">知识库</NavLink>
-        <NavLink href="#">工具资源库</NavLink>
-        <NavLink href="#">岁月史书</NavLink>
-        <SplitLine />
-        <NavLink href="/games">UMi的游戏</NavLink>
-        <NavLink href="#">关于我们</NavLink>
-      </ul>
-    </nav>
-  );
-
-  function NavLink({
-    href,
-    children,
-  }: {
-    href: string;
-    children: React.ReactNode;
-  }) {
-    return (
-      <li>
-        <Link
-          href={href}
-          className={`block rounded-lg px-4 py-2 ${styleOnCondition("bg-slate-200", pathName === href)} ${styleOnCondition("hover:bg-slate-100", pathName !== href)}`}>
-          {children}
-        </Link>
-      </li>
-    );
-  }
-}
-
-function SplitLine() {
-  return (
-    <li>
-      <hr className="w-full border border-slate-100" aria-hidden />
-    </li>
   );
 }

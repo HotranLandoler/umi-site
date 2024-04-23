@@ -23,26 +23,26 @@ export type PageData = {
   href: string;
 };
 
-export const mainSections: PageData[] = [
+export const umiDbSections: PageData[] = [
   {
-    name: "游戏库",
+    name: "游戏推荐",
     desc: "推荐喜欢的游戏",
-    href: "/gamerec/",
+    href: "/gamerec",
   },
   {
-    name: "知识库",
+    name: "知识分享",
     desc: "分享游戏设计与开发的知识",
-    href: "/knowledge/",
+    href: "/knowledge",
   },
   {
-    name: "工具资源库",
-    desc: "分享游戏开发相关的好物",
-    href: "/tools/",
+    name: "工具资源",
+    desc: "游戏开发相关的好物",
+    href: "/tools",
   },
   {
     name: "岁月史书",
     desc: "我们社团的历史记录",
-    href: "/history/",
+    href: "/history",
   },
 ];
 

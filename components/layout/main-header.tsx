@@ -20,14 +20,10 @@ export default function MainHeader() {
 function LoginButtons() {
   return (
     <div className="ml-auto flex items-center gap-2">
-      <Link
-        href="#"
-        className="block rounded-full border-2 border-slate-500 px-6 py-2 transition-opacity hover:opacity-50">
+      <Link href="#" className="button button-outline px-6 py-2">
         登录
       </Link>
-      <Link
-        href="#"
-        className="block rounded-full border-2 bg-slate-500 px-6 py-2 text-white transition-opacity hover:opacity-50">
+      <Link href="#" className="button button-primary px-6 py-2">
         注册
       </Link>
     </div>

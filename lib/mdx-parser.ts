@@ -19,7 +19,7 @@ export function getMDXData<TMetaData>(dir: string) {
   });
 }
 
-export function parseFrontmatter<TMetaData>(fileContent: string) {
+function parseFrontmatter<TMetaData>(fileContent: string) {
   let { data, content } = matter(fileContent);
 
   return { metadata: data as TMetaData, content };

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply block rounded-full border-2 transition-opacity hover:opacity-60;
+  }
+  .button-primary {
+    @apply border-primary bg-primary font-bold text-white;
+  }
+  .button-outline {
+    @apply border-black-light;
+  }
+}
