@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllGames } from "@/lib/data";
 import { baseUrl } from "@/app/sitemap";
 import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type Props = {
   params: {
@@ -9,7 +10,7 @@ type Props = {
   };
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   let games = getAllGames();
 
   return games.map(function getSlug(game) {
@@ -106,7 +107,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           alt={`Image for game ${game.metadata.title}`}
         />
       </header>
-      <p>{game.content}</p>
+      <MDXRemote source={game.content} />
     </article>
   );
 }
