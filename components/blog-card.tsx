@@ -1,26 +1,48 @@
-import type { BlogItem } from "@/lib/data";
+import { $Enums } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
 
-export default function BlogCard({ blogItem }: { blogItem: BlogItem }) {
+type Props = {
+  title: string;
+  imageUrl: string | null;
+  author: {
+    name: string;
+  };
+  createdAt: Date;
+  content: string;
+  category: $Enums.Category;
+  tags: {
+    name: string;
+  }[];
+};
+
+export default function BlogCard({
+  title,
+  imageUrl,
+  author,
+  createdAt,
+  content,
+  category,
+  tags,
+}: Props) {
   return (
     <article className="mb-4 overflow-hidden rounded-lg bg-white">
       <div className="relative min-h-8">
-        {blogItem.imageSrc !== "" && (
+        {imageUrl && (
           <Image
             className="w-full"
-            src={blogItem.imageSrc}
+            src={imageUrl}
             width={300}
             height={200}
-            alt={blogItem.title}
+            alt={title}
           />
         )}
         <Link
           className="absolute left-2 top-2 inline-block rounded-full bg-slate-100 px-2"
           href="#">
-          {blogItem.category}
+          {category}
         </Link>
       </div>
       <div className="p-4">
@@ -33,27 +55,25 @@ export default function BlogCard({ blogItem }: { blogItem: BlogItem }) {
               height={50}
               alt=""
             />
-            <span>{blogItem.author}</span>
-            <time
-              className="ml-auto"
-              dateTime={blogItem.publishTime.toString()}>
-              {blogItem.publishTime.toLocaleDateString()}
+            <span>{author.name}</span>
+            <time className="ml-auto" dateTime={createdAt.toString()}>
+              {createdAt.toLocaleDateString()}
             </time>
           </div>
           <h3 className="text-xl font-bold underline underline-offset-4">
             <Link className="transition-opacity hover:opacity-50" href="#">
-              {blogItem.title}
+              {title}
             </Link>
           </h3>
         </header>
-        <p className="mb-4 text-slate-500">{blogItem.content}</p>
+        <p className="mb-4 text-slate-500">{content}</p>
         <div className="mb-2 flex gap-1">
-          {blogItem.tags.map(function renderTag(tag) {
+          {tags.map(function renderTag(tag) {
             return (
               <span
-                key={tag}
+                key={tag.name}
                 className="rounded-full bg-slate-400 px-2 text-sm text-white">
-                {tag}
+                {tag.name}
               </span>
             );
           })}
@@ -61,13 +81,13 @@ export default function BlogCard({ blogItem }: { blogItem: BlogItem }) {
         <footer className="flex gap-2 border-t-2 border-slate-200 pt-2 text-sm text-slate-500">
           <div className="flex gap-1">
             <CommentsIcon />
-            <span>{blogItem.comments.length}</span>
+            <span>{5}</span>
           </div>
           <div className="flex gap-1">
             <LikesIcon />
-            <span>{blogItem.likes}</span>
+            <span>{29}</span>
           </div>
-          <div className="ml-auto">预计阅读 {blogItem.reading} 分钟</div>
+          <div className="ml-auto">预计阅读 {3} 分钟</div>
         </footer>
       </div>
     </article>

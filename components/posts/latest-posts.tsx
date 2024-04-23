@@ -1,14 +1,24 @@
 import BlogCard from "@/components/blog-card";
 
-import { fetchFeed } from "@/lib/data";
+import { prisma } from "@/lib/prisma";
 
 export default async function LatestPosts() {
-  const feed = await fetchFeed();
+  const feed = await prisma.post.findMany({
+    where: { published: true },
+    include: {
+      author: {
+        select: { name: true },
+      },
+      tags: {
+        select: { name: true },
+      },
+    },
+  });
 
   return (
     <div className="columns-4">
-      {feed.map(function renderBlogItem(blogItem) {
-        return <BlogCard key={blogItem.id} blogItem={blogItem} />;
+      {feed.map(function renderBlogItem(post) {
+        return <BlogCard key={post.id} {...post} />;
       })}
     </div>
   );
