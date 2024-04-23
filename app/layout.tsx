@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Noto_Sans_SC } from "next/font/google";
+
 import SideBar from "@/components/layout/sidebar";
 import MainHeader from "@/components/layout/main-header";
 import MainFooter from "@/components/layout/main-footer";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSans = Noto_Sans_SC({ subsets: ["vietnamese"] });
 
 export const metadata: Metadata = {
-  title: "UMi游研社",
+  title: {
+    template: "%s | UMi游研社",
+    default: "UMi游研社",
+  },
   description: "UMi游研社的官方主页和数据库",
+  metadataBase: new URL("https://umi-games.com"),
 };
 
 export default function RootLayout({
@@ -18,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh">
+    <html lang="zh" className={notoSans.className}>
       <body className="mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 text-black">
         <SideBar />
         <MainHeader />

@@ -1,9 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+
+const PARAM_KEY_QUERY = "query";
 
 export default function Search() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   return (
     <div className="relative flex">
@@ -12,17 +16,28 @@ export default function Search() {
       </label>
       <input
         id="search"
-        key={searchParams?.get("q")}
         type="text"
-        name="search"
         placeholder="搜索内容..."
+        onChange={function onInputChange(event) {
+          handleSearch(event.target.value);
+        }}
         autoComplete="off"
-        defaultValue={searchParams?.get("q") || ""}
-        className="w-full rounded-full border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-800 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
+        defaultValue={searchParams.get(PARAM_KEY_QUERY)?.toString()}
+        className="rounded-full border bg-white px-4 py-2 text-sm text-black placeholder:text-black-light hover:border hover:border-primary dark:border-neutral-800 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
       />
       <SearchIcon />
     </div>
   );
+
+  function handleSearch(term: string) {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set(PARAM_KEY_QUERY, term);
+    } else {
+      params.delete(PARAM_KEY_QUERY);
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }
 }
 
 function SearchIcon() {

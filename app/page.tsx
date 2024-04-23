@@ -1,9 +1,12 @@
-import Hero from "@/components/layout/hero";
-import BlogCard from "@/components/blog-card";
-import { fetchFeed, getAllGames } from "@/lib/data";
 import Link from "next/link";
+import { Suspense } from "react";
+
+import Hero from "@/components/layout/hero";
 import Games from "@/components/games/games";
 import RightArrow from "@/components/icons/right-arrow";
+import LatestPosts from "@/components/posts/latest-posts";
+
+import { getAllGames } from "@/lib/data";
 
 export default async function Home() {
   return (
@@ -35,19 +38,15 @@ async function OurGames() {
   );
 }
 
-async function Feed() {
-  const feed = await fetchFeed();
-
+function Feed() {
   return (
     <section id="feed">
       <header className="mb-8 flex items-center gap-8">
         <h2 className="text-3xl font-bold">最新动态</h2>
       </header>
-      <div className="columns-4">
-        {feed.map(function renderBlogItem(blogItem) {
-          return <BlogCard key={blogItem.id} blogItem={blogItem} />;
-        })}
-      </div>
+      <Suspense fallback={<p>loading...</p>}>
+        <LatestPosts />
+      </Suspense>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import { getAllGames } from "@/lib/data";
 
-export const baseUrl = "https://umi-site.pages.dev/";
+export const baseUrl = "https://umi-games.com";
 
 export default async function sitemap() {
   let now = new Date().toISOString().split("T")[0];
