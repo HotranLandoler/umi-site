@@ -7,6 +7,13 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      lg: { max: "64em" },
+
+      md: { max: "48em" },
+
+      sm: { max: "40em" },
+    },
     extend: {
       backgroundImage: {
         "gradient-sample": "url('/examples/gradient-1.png')",

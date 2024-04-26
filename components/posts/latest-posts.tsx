@@ -16,7 +16,7 @@ export default async function LatestPosts() {
   });
 
   return (
-    <div className="columns-4">
+    <div className="columns-4 sm:columns-2 lg:columns-3">
       {feed.map((post) => (
         <PostCard key={post.id} {...post} />
       ))}

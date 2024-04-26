@@ -5,6 +5,8 @@ export function styleOnCondition(
   return condition ? className : "";
 }
 
-export function mergeOnCondition(...classNames: string[]): string {
+type NullableString = string | undefined;
+
+export function mergeOnCondition(...classNames: NullableString[]): string {
   return classNames.filter(Boolean).join(" ");
 }

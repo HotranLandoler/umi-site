@@ -23,6 +23,8 @@ export type PageData = {
   href: string;
 };
 
+export const siteTitle = "UMi游研社";
+
 export const umiDbSections: PageData[] = [
   {
     name: "游戏推荐",

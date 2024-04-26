@@ -1,11 +1,16 @@
 import Link from "next/link";
 import Search from "../search";
 import { Suspense } from "react";
+import Logo from "../logo";
 
 export default function MainHeader() {
   return (
-    <div className="sticky top-0 z-10 bg-white pt-4">
-      <header className="mb-4 flex rounded-full bg-slate-100 px-12 py-4">
+    <div className="sticky top-0 z-10 bg-white py-4">
+      <header className="flex justify-between rounded-full bg-slate-100 px-12 py-4 md:px-8">
+        <div className="hidden items-center gap-2 md:flex">
+          <Logo className="w-12" />
+          <p className="text-xl font-bold">UMi游研社</p>
+        </div>
         <Suspense>
           <Search />
         </Suspense>
@@ -19,7 +24,7 @@ export default function MainHeader() {
 
 function LoginButtons() {
   return (
-    <div className="ml-auto flex items-center gap-2">
+    <div className="flex items-center gap-2 sm:hidden">
       <Link href="#" className="button button-outline px-6 py-2">
         登录
       </Link>
@@ -33,7 +38,7 @@ function LoginButtons() {
 function RoundedCornerImage({ className }: { className: string }) {
   return (
     <svg
-      className={`absolute text-white ${className}`}
+      className={`absolute -bottom-[35px] text-white ${className}`}
       width="35"
       height="35"
       viewBox="0 0 35 35"
