@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
+import { styleOnCondition } from "@/lib/utils";
 
 type Props = {
   title: string;
@@ -18,7 +19,7 @@ type Props = {
   }[];
 };
 
-export default function BlogCard({
+export default function PostCard({
   title,
   imageUrl,
   author,
@@ -29,13 +30,13 @@ export default function BlogCard({
 }: Props) {
   return (
     <article className="mb-4 overflow-hidden rounded-lg bg-white">
-      <div className="relative min-h-8">
+      <div
+        className={`relative ${styleOnCondition("h-8", imageUrl === null)} ${styleOnCondition("h-32", imageUrl !== null)}`}>
         {imageUrl && (
           <Image
-            className="w-full"
+            className="w-full object-cover object-center"
             src={imageUrl}
-            width={300}
-            height={200}
+            fill
             alt={title}
           />
         )}

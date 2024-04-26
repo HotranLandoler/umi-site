@@ -1,4 +1,4 @@
-import BlogCard from "@/components/blog-card";
+import PostCard from "@/components/posts/post-card";
 
 import { prisma } from "@/lib/prisma";
 
@@ -17,9 +17,9 @@ export default async function LatestPosts() {
 
   return (
     <div className="columns-4">
-      {feed.map(function renderBlogItem(post) {
-        return <BlogCard key={post.id} {...post} />;
-      })}
+      {feed.map((post) => (
+        <PostCard key={post.id} {...post} />
+      ))}
     </div>
   );
 }
