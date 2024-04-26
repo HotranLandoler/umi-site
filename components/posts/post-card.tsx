@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
-import { styleOnCondition } from "@/lib/utils";
+import { formatDate, styleOnCondition } from "@/lib/utils";
 
 type Props = {
   title: string;
@@ -58,7 +58,7 @@ export default function PostCard({
             />
             <span>{author.name}</span>
             <time className="ml-auto" dateTime={createdAt.toString()}>
-              {createdAt.toLocaleDateString()}
+              {formatDate(createdAt, true)}
             </time>
           </div>
           <h3 className="text-xl font-bold underline underline-offset-4">
