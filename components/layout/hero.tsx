@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { type PageData, umiDbSections } from "@/lib/data";
+import { buttonVariants } from "../ui/button";
 
 export default function Hero() {
   return (
@@ -36,10 +37,10 @@ function CTA() {
         欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
       </p>
       <div className="flex gap-4">
-        <Link className="button button-primary px-6 py-2" href="#">
+        <Link className={buttonVariants()} href="#">
           发表内容
         </Link>
-        <Link className="button button-outline px-6 py-2" href="#feed">
+        <Link className={buttonVariants({ variant: "secondary" })} href="#feed">
           最新动态
         </Link>
       </div>
@@ -51,7 +52,7 @@ function SectionLink({ data }: { data: PageData }) {
   return (
     <li>
       <Link
-        className="block h-full w-full rounded-3xl bg-gradient-to-br from-orange-200 to-primary-light p-4 transition-shadow hover:shadow-lg hover:shadow-slate-300"
+        className="block h-full w-full rounded-lg bg-gradient-to-br from-secondary to-primary/40 p-4 transition-shadow hover:shadow-lg hover:shadow-slate-300"
         href={data.href}>
         <h4 className="text-lg font-bold">{data.name}</h4>
         <p>{data.desc}</p>

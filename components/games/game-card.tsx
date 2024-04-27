@@ -19,11 +19,7 @@ export default function GameCard({ gameMeta, slug }: Props) {
         height={250}
         alt={`游戏${gameMeta.title}的封面`}
       />
-      {isNew(gameMeta.releaseDate) && (
-        <div className="absolute -left-1 top-0 bg-yellow-400 px-4 py-2 font-bold">
-          新品
-        </div>
-      )}
+      {isNew(gameMeta.releaseDate) && <div className="ribbon">新品</div>}
     </Link>
   );
 }

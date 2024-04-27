@@ -2,11 +2,12 @@ import Link from "next/link";
 import Search from "../search";
 import { Suspense } from "react";
 import Logo from "../logo";
+import { buttonVariants } from "../ui/button";
 
 export default function MainHeader() {
   return (
-    <div className="sticky top-0 z-10 bg-white py-4">
-      <header className="flex justify-between rounded-full bg-slate-100 px-12 py-4 md:px-8">
+    <div className="sticky top-0 z-10 bg-background py-4">
+      <header className="flex justify-between rounded-full bg-muted/50 px-12 py-4 md:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <Logo className="w-12" />
           <p className="text-xl font-bold">UMi游研社</p>
@@ -25,10 +26,10 @@ export default function MainHeader() {
 function LoginButtons() {
   return (
     <div className="flex items-center gap-2 sm:hidden">
-      <Link href="#" className="button button-outline px-6 py-2">
+      <Link href="#" className={buttonVariants({ variant: "secondary" })}>
         登录
       </Link>
-      <Link href="#" className="button button-primary px-6 py-2">
+      <Link href="#" className={buttonVariants()}>
         注册
       </Link>
     </div>

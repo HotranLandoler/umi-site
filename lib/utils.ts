@@ -1,14 +1,8 @@
-export function styleOnCondition(
-  className: string,
-  condition: boolean,
-): string {
-  return condition ? className : "";
-}
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-type NullableString = string | undefined;
-
-export function mergeOnCondition(...classNames: NullableString[]): string {
-  return classNames.filter(Boolean).join(" ");
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
 }
 
 export function formatDate(date: Date, includeRelative = false): string {

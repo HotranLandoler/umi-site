@@ -30,7 +30,7 @@ function SocialLink({
   return (
     <li>
       <a
-        className="opacity-50 transition-opacity hover:opacity-100"
+        className="text-muted-foreground hover:text-foreground"
         target="_blank"
         rel="noopener noreferer"
         href={href}

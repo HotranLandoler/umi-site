@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { styleOnCondition } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { PageData } from "@/lib/data";
 import Link from "next/link";
 
@@ -42,7 +42,13 @@ export default function Nav({ umiDbSections }: Props) {
       <li>
         <Link
           href={href}
-          className={`block rounded-lg px-4 py-2 ${styleOnCondition("bg-slate-200", pathName === href)} ${styleOnCondition("hover:bg-slate-100", pathName !== href)}`}>
+          className={cn(
+            "block rounded-lg px-4 py-2",
+            { "bg-accent text-accent-foreground": pathName === href },
+            {
+              "hover:bg-accent/60": pathName !== href,
+            },
+          )}>
           {children}
         </Link>
       </li>

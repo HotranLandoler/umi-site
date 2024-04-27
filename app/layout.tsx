@@ -6,8 +6,12 @@ import MainHeader from "@/components/layout/main-header";
 import MainFooter from "@/components/layout/main-footer";
 import "./globals.css";
 import { siteTitle } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
-const notoSans = Noto_Sans_SC({ subsets: ["vietnamese"] });
+const notoSans = Noto_Sans_SC({
+  subsets: ["vietnamese"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh" className={notoSans.className}>
-      <body className="mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 text-black md:block">
+    <html lang="zh">
+      <body
+        className={cn(
+          "mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 text-black md:block",
+          notoSans.variable,
+        )}>
         <SideBar />
         <MainHeader />
         <main>
-          <div className="mb-12 rounded-[2rem] bg-slate-100 p-12 md:p-8">
+          <div className="mb-12 rounded-[2rem] bg-muted/50 p-12 md:p-8">
             {children}
           </div>
           <MainFooter />

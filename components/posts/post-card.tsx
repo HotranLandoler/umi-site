@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
-import { formatDate, styleOnCondition } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
 type Props = {
   title: string;
@@ -31,7 +31,11 @@ export default function PostCard({
   return (
     <article className="mb-4 overflow-hidden rounded-lg bg-white">
       <div
-        className={`relative ${styleOnCondition("h-8", imageUrl === null)} ${styleOnCondition("h-32", imageUrl !== null)}`}>
+        className={cn(
+          "relative",
+          { "h-8": imageUrl === null },
+          { "h-32": imageUrl !== null },
+        )}>
         {imageUrl && (
           <Image
             className="w-full object-cover object-center"

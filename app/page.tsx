@@ -7,6 +7,8 @@ import RightArrow from "@/components/icons/right-arrow";
 import LatestPosts from "@/components/posts/latest-posts";
 
 import { getAllGames } from "@/lib/data";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default async function Home() {
   return (
@@ -27,7 +29,10 @@ async function OurGames() {
       <header className="mb-8 flex items-center gap-8">
         <h2 className="text-3xl font-bold">UMi的游戏</h2>
         <Link
-          className="button button-outline group/button flex px-4 py-1"
+          className={cn(
+            "group/button",
+            buttonVariants({ variant: "secondary" }),
+          )}
           href="/games">
           全部游戏
           <RightArrow />
