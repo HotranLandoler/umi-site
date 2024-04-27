@@ -6,7 +6,7 @@ import { umiDbSections } from "@/lib/data";
 
 export default function SideBar() {
   return (
-    <div className="sticky top-4 row-span-2 max-h-screen self-start md:hidden">
+    <div className="sticky top-0 row-span-2 max-h-screen self-start pt-8 md:hidden">
       <div className="mx-auto max-w-32">
         <Header />
         <Nav umiDbSections={umiDbSections} />

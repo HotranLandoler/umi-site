@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 
-import SideBar from "@/components/layout/sidebar";
-import MainHeader from "@/components/layout/main-header";
-import MainFooter from "@/components/layout/main-footer";
-import "./globals.css";
+import "@/app/globals.css";
+
 import { siteTitle } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -29,20 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh">
-      <body
-        className={cn(
-          "mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 text-black md:block",
-          notoSans.variable,
-        )}>
-        <SideBar />
-        <MainHeader />
-        <main>
-          <div className="mb-12 rounded-[2rem] bg-muted/50 p-12 md:p-8">
-            {children}
-          </div>
-          <MainFooter />
-        </main>
-      </body>
+      <body className={cn("font-sans", notoSans.variable)}>{children}</body>
     </html>
   );
 }

@@ -15,7 +15,7 @@ export default function MainHeader() {
         <Suspense>
           <Search />
         </Suspense>
-        <LoginButtons />
+        <AuthButtons />
       </header>
       <RoundedCornerImage className="left-0 rotate-90" />
       <RoundedCornerImage className="right-0 rotate-180" />
@@ -23,13 +23,13 @@ export default function MainHeader() {
   );
 }
 
-function LoginButtons() {
+function AuthButtons() {
   return (
     <div className="flex items-center gap-2 sm:hidden">
       <Link href="#" className={buttonVariants({ variant: "secondary" })}>
         登录
       </Link>
-      <Link href="#" className={buttonVariants()}>
+      <Link href="/signup" className={buttonVariants()}>
         注册
       </Link>
     </div>
