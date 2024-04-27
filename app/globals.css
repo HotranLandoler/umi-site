@@ -33,7 +33,7 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
-    --primary: 142.1 70.6% 45.3%;
+    --primary: 160 76.2% 36.3%;
     --primary-foreground: 144.9 80.4% 10%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -60,7 +60,7 @@
 
 @layer components {
   .ribbon {
-    @apply absolute left-0 top-0 -rotate-45 text-nowrap rounded bg-yellow-400 px-32 font-bold;
+    @apply absolute left-0 top-0 -rotate-45 text-nowrap rounded bg-yellow-400 px-32 font-bold text-black;
 
     --offset: 32px;
     --tw-translate-x: calc(-50% + var(--offset));

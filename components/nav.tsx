@@ -59,7 +59,7 @@ export default function Nav({ umiDbSections }: Props) {
 function SplitLine() {
   return (
     <li>
-      <hr className="w-full border border-slate-100" aria-hidden />
+      <hr className="w-full border border-muted" aria-hidden />
     </li>
   );
 }

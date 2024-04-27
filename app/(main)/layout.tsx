@@ -8,7 +8,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 text-black md:block">
+    <div className="mx-auto grid max-w-[96rem] grid-cols-[1fr_4fr] grid-rows-[auto_1fr] px-8 pb-4 md:block">
       <SideBar />
       <MainHeader />
       <main>

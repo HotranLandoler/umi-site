@@ -3,6 +3,7 @@ import Search from "../search";
 import { Suspense } from "react";
 import Logo from "../logo";
 import { buttonVariants } from "../ui/button";
+import ThemeToggle from "../theme-toggle";
 
 export default function MainHeader() {
   return (
@@ -15,7 +16,7 @@ export default function MainHeader() {
         <Suspense>
           <Search />
         </Suspense>
-        <AuthButtons />
+        <ActionButtons />
       </header>
       <RoundedCornerImage className="left-0 rotate-90" />
       <RoundedCornerImage className="right-0 rotate-180" />
@@ -23,15 +24,18 @@ export default function MainHeader() {
   );
 }
 
-function AuthButtons() {
+function ActionButtons() {
   return (
-    <div className="flex items-center gap-2 sm:hidden">
-      <Link href="#" className={buttonVariants({ variant: "secondary" })}>
-        登录
-      </Link>
-      <Link href="/signup" className={buttonVariants()}>
-        注册
-      </Link>
+    <div className="flex items-center gap-4 sm:hidden">
+      <ThemeToggle />
+      <div className="flex items-center gap-2 sm:hidden">
+        <Link href="#" className={buttonVariants({ variant: "secondary" })}>
+          登录
+        </Link>
+        <Link href="/signup" className={buttonVariants()}>
+          注册
+        </Link>
+      </div>
     </div>
   );
 }
@@ -39,7 +43,7 @@ function AuthButtons() {
 function RoundedCornerImage({ className }: { className: string }) {
   return (
     <svg
-      className={`absolute -bottom-[35px] text-white ${className}`}
+      className={`absolute -bottom-[35px] text-background ${className}`}
       width="35"
       height="35"
       viewBox="0 0 35 35"
