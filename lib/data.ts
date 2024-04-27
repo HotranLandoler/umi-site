@@ -25,6 +25,8 @@ export type PageData = {
 
 export const siteTitle = "UMi游研社";
 
+export const siteAnnouncement = "网站建设中 - 功能和数据可能变化";
+
 export const umiDbSections: PageData[] = [
   {
     name: "游戏推荐",

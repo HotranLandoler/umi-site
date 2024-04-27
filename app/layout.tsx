@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 
+import Announcement from "@/components/layout/announcement";
 import "@/app/globals.css";
 
 import { siteTitle } from "@/lib/data";
@@ -27,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh">
-      <body className={cn("font-sans", notoSans.variable)}>{children}</body>
+      <body className={cn("font-sans", notoSans.variable)}>
+        <Announcement />
+        {children}
+      </body>
     </html>
   );
 }
