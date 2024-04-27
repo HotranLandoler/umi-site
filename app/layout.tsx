@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={cn("font-sans", notoSans.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light">
           <Announcement />
           {children}
         </ThemeProvider>

@@ -3,14 +3,18 @@
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
 
   return (
     <button
-      className={cn("theme-toggle h-6 w-6", {
-        "theme-toggle--toggled": theme === "dark",
-      })}
+      className={cn(
+        "theme-toggle h-6 w-6",
+        {
+          "theme-toggle--toggled": theme === "dark",
+        },
+        className,
+      )}
       type="button"
       onClick={handleToggle}
       title="切换亮色/暗色模式"
