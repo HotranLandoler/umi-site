@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 
 import Announcement from "@/components/layout/announcement";
+import { ThemeProvider } from "@/components/layout/theme-provider";
+import TRPCProviders from "@/components/trpc-providers";
+
 import "@/app/globals.css";
 import "@theme-toggles/react/css/Expand.css";
 
 import { siteTitle } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/layout/theme-provider";
 
 const notoSans = Noto_Sans_SC({
   subsets: ["vietnamese"],
@@ -31,10 +33,12 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={cn("font-sans", notoSans.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <Announcement />
-          {children}
-        </ThemeProvider>
+        <TRPCProviders>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            <Announcement />
+            {children}
+          </ThemeProvider>
+        </TRPCProviders>
       </body>
     </html>
   );

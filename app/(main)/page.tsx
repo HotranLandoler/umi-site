@@ -49,7 +49,7 @@ function Feed() {
       <header className="mb-8 flex items-center gap-8">
         <h2 className="text-3xl font-bold">最新动态</h2>
       </header>
-      <Suspense fallback={<p>loading...</p>}>
+      <Suspense fallback={<p>loading in suspense...</p>}>
         <LatestPosts />
       </Suspense>
     </section>
