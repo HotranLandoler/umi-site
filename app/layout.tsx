@@ -10,6 +10,7 @@ import "@theme-toggles/react/css/Expand.css";
 
 import { siteTitle } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const notoSans = Noto_Sans_SC({
   subsets: ["vietnamese"],
@@ -39,6 +40,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </TRPCProviders>
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

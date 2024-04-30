@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { LoaderCircle } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -19,6 +20,9 @@ import { authFormSchema, type AuthFormValidator } from "@/lib/auth-schema";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import RightArrow from "@/components/icons/right-arrow";
+import { trpc } from "@/lib/trpc-client";
+import { ZodError } from "zod";
+import { toast } from "sonner";
 
 export default function SignUp() {
   const form = useForm<AuthFormValidator>({
@@ -27,6 +31,25 @@ export default function SignUp() {
       username: "",
       email: "",
       password: "",
+    },
+  });
+
+  const { mutate: createUser, isPending } = trpc.auth.createUser.useMutation({
+    onError: function onCreateUserFailed(error) {
+      if (error.data?.code === "CONFLICT") {
+        toast.error("该邮箱已被使用，试试登录？");
+        return;
+      }
+
+      if (error instanceof ZodError) {
+        toast.error(error.issues[0].message);
+        return;
+      }
+
+      toast.error("出现了未知问题，请再试一次。");
+    },
+    onSuccess: function onCreateUserSucess(output) {
+      toast.success(`验证码已发送到邮箱${output.sendToEmail}`);
     },
   });
 
@@ -72,7 +95,7 @@ export default function SignUp() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>用于登录使用，不会对外显示</FormDescription>
+                <FormDescription>用于登录，不会对外显示</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -99,7 +122,8 @@ export default function SignUp() {
             )}
           />
 
-          <Button className="w-full" type="submit">
+          <Button className="w-full" type="submit" disabled={isPending}>
+            {isPending && <LoaderCircle className="animate-spin" />}
             注册
           </Button>
         </form>
@@ -119,6 +143,6 @@ export default function SignUp() {
   );
 
   function onSubmit(values: AuthFormValidator) {
-    console.log(values);
+    createUser(values);
   }
 }
