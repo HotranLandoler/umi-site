@@ -4,7 +4,7 @@ import { buttonVariants } from "../ui/button";
 
 export default function Hero() {
   return (
-    <section className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-8 lg:grid-cols-1">
+    <section className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-6 lg:grid-cols-1">
       <Heading />
       <DbSectionLinks />
       <CTA />
@@ -14,8 +14,11 @@ export default function Hero() {
 
 function Heading() {
   return (
-    <div className="flex items-end">
-      <h1 className="text-6xl font-bold">欢迎来到UMi数据库主页</h1>
+    <div className="flex items-end leading-10">
+      <h1 className="text-6xl/tight font-bold">
+        欢迎来到<br />
+        UMi数据库主页
+        </h1>
     </div>
   );
 }
