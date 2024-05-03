@@ -16,7 +16,7 @@ export default function AuthenticationLayout({
     <div className="relative">
       <ThemeToggle className="absolute right-8 top-8" />
       <article className="relative mx-auto max-w-96 p-8">
-        <Logo className="mx-auto mb-4 max-w-32" />
+        <Logo className="mx-auto mb-2 max-w-24" />
         {children}
       </article>
     </div>
