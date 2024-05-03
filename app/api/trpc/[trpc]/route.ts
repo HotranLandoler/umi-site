@@ -7,6 +7,9 @@ function routeHandler(req: Request) {
     req,
     router: appRouter,
     createContext: () => ({}),
+    onError: function handleError({ error }) {
+      alert(error.message);
+    },
   });
 }
 
