@@ -142,7 +142,7 @@ export default function SignUp() {
     </>
   );
 
-  function onSubmit(values: AuthFormValidator) {
+  async function onSubmit(values: AuthFormValidator) {
     createUser(values);
   }
 }

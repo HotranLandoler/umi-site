@@ -5,6 +5,8 @@ import { authFormSchema } from "@/lib/auth-schema";
 import { publicProcedure, router } from "../trpc";
 import { prisma } from "@/lib/prisma";
 import { sendVerificationEmail } from "../actions";
+import { generateOTP } from "@/lib/utils";
+import { z } from "zod";
 
 export const authRouter = router({
   createUser: publicProcedure
@@ -30,12 +32,15 @@ export const authRouter = router({
         },
       });
 
-      const sendEmailResult = await sendVerificationEmail(input.email);
-      if (!sendEmailResult.ok) {
-        throw new Error(await sendEmailResult.text());
-      }
-      console.log(sendEmailResult);
+      const verificationCode = generateOTP();
+      const sendEmailResult = await sendVerificationEmail(
+        input.email,
+        verificationCode,
+      );
 
       return { success: true, sendToEmail: input.email };
     }),
+  verifyEmail: publicProcedure
+    .input(z.string())
+    .mutation(async function verifyEmail({ input }) {}),
 });
