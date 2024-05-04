@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -34,6 +35,8 @@ export default function SignUp() {
     },
   });
 
+  const router = useRouter();
+
   const { mutate: createUser, isPending } = trpc.auth.createUser.useMutation({
     onError: function onCreateUserFailed(error) {
       if (error.data?.code === "CONFLICT") {
@@ -50,6 +53,7 @@ export default function SignUp() {
     },
     onSuccess: function onCreateUserSucess(output) {
       toast.success(`验证码已发送到邮箱${output.sendToEmail}`);
+      router.push("/");
     },
   });
 
