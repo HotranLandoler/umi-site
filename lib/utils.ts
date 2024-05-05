@@ -5,24 +5,12 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: Date, includeRelative = false): string {
+export function formatDate(date: Date): string {
   let currentDate = new Date();
 
   let yearsAgo = currentDate.getFullYear() - date.getFullYear();
   let monthsAgo = currentDate.getMonth() - date.getMonth();
   let daysAgo = currentDate.getDate() - date.getDate();
-
-  let formattedDate = "";
-
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}年前`;
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}个月前`;
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}天前`;
-  } else {
-    formattedDate = "今天";
-  }
 
   let fullDate = date.toLocaleString("zh-cn", {
     month: "numeric",
@@ -30,11 +18,15 @@ export function formatDate(date: Date, includeRelative = false): string {
     year: "numeric",
   });
 
-  if (!includeRelative) {
+  if (yearsAgo > 0 || monthsAgo > 0) {
     return fullDate;
   }
 
-  return `${fullDate} (${formattedDate})`;
+  if (daysAgo > 0) {
+    return `${daysAgo}天前`;
+  } else {
+    return "今天";
+  }
 }
 
 export function generateOTP(digits = 6): string {

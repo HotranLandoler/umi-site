@@ -6,7 +6,7 @@ import Games from "@/components/games/games";
 import RightArrow from "@/components/icons/right-arrow";
 import LatestPosts from "@/components/posts/latest-posts";
 
-import { getAllGames } from "@/lib/data";
+import { getAllGames } from "@/lib/mdx-data";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

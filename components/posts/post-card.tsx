@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
 import { cn, formatDate } from "@/lib/utils";
+import { categoryFormatter } from "@/lib/data";
 
 type Props = {
   title: string;
@@ -47,7 +48,7 @@ export default function PostCard({
         <Link
           className="absolute left-2 top-2 inline-block rounded-full bg-slate-100 px-2"
           href="#">
-          {category}
+          {categoryFormatter[category]}
         </Link>
       </div>
       <div className="p-4">
@@ -61,8 +62,11 @@ export default function PostCard({
               alt=""
             />
             <span>{author.name}</span>
-            <time className="ml-auto" dateTime={createdAt.toString()}>
-              {formatDate(createdAt, true)}
+            <time
+              className="ml-auto"
+              dateTime={createdAt.toString()}
+              title={createdAt.toLocaleString("zh-cn")}>
+              {formatDate(createdAt)}
             </time>
           </div>
           <h3 className="text-xl font-bold underline underline-offset-4">
@@ -83,7 +87,7 @@ export default function PostCard({
             );
           })}
         </div>
-        <footer className="flex gap-2 border-t-2 border-slate-200 pt-2 text-sm text-slate-500">
+        <footer className="flex flex-wrap gap-2 border-t-2 border-slate-200 pt-2 text-sm text-slate-500">
           <div className="flex gap-1">
             <CommentsIcon />
             <span>{5}</span>
@@ -92,7 +96,7 @@ export default function PostCard({
             <LikesIcon />
             <span>{29}</span>
           </div>
-          <div className="ml-auto">预计阅读 {3} 分钟</div>
+          <div className="text-nowrap">预计阅读 {3} 分钟</div>
         </footer>
       </div>
     </article>

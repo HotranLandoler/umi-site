@@ -1,5 +1,5 @@
 import Games from "@/components/games/games";
-import { getAllGames } from "@/lib/data";
+import { getAllGames } from "@/lib/mdx-data";
 import type { Metadata } from "next";
 
 const description = "由UMi成员创作的独立游戏作品展示区！";

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAllGames } from "@/lib/data";
+import { getAllGames } from "@/lib/mdx-data";
 import { baseUrl } from "@/app/sitemap";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
