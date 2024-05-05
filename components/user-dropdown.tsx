@@ -23,7 +23,7 @@ export default function UserDropdown({ user }: { user: User }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="gap-2" variant="ghost">
+        <Button variant="ghost">
           {user.name}
           <ChevronDown size={16} />
         </Button>
@@ -31,7 +31,9 @@ export default function UserDropdown({ user }: { user: User }) {
       <DropdownMenuContent>
         <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
         <DropdownMenuItem>
-          <Link href="#">个人主页</Link>
+          <Link className="w-full" href="#">
+            个人主页
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
