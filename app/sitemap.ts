@@ -1,4 +1,4 @@
-import { getAllGames } from "@/lib/data";
+import { getAllGames } from "@/lib/mdx-data";
 
 export const baseUrl = "https://umi-games.com";
 

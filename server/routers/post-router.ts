@@ -1,5 +1,7 @@
+import { z } from "zod";
 import { publicProcedure, router } from "../trpc";
 import { prisma } from "@/lib/prisma";
+import { TRPCError } from "@trpc/server";
 
 export const postRouter = router({
   all: publicProcedure.query(async function queryAllPosts() {
@@ -14,8 +16,16 @@ export const postRouter = router({
         },
       },
     });
-    // TODO Mock up
-    await new Promise((resolve) => setTimeout(resolve, 5000));
     return posts;
+  }),
+  byId: publicProcedure.input(z.number()).query(async function findPostById({
+    input: id,
+  }) {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return post;
   }),
 });

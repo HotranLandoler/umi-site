@@ -16,8 +16,8 @@ export default async function MainLayout({
       <SideBar />
       <MainHeader user={user} />
       <main className="rounded-[2rem] bg-muted/50">
-        <div className="p-12 md:p-8">
-          {children}
+        <div className="flex h-full flex-col p-12 md:p-8">
+          <div className="flex-grow">{children}</div>
           <MainFooter />
         </div>
         <BottomRoundedEdge />

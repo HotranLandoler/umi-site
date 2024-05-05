@@ -1,4 +1,4 @@
-import { $Enums } from "@prisma/client";
+import { $Enums, Post } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,53 +7,44 @@ import { cn, formatDate } from "@/lib/utils";
 import { categoryFormatter } from "@/lib/data";
 
 type Props = {
-  title: string;
-  imageUrl: string | null;
-  author: {
-    name: string;
+  post: Post & {
+    author: {
+      name: string;
+    };
+    tags: {
+      name: string;
+    }[];
   };
-  createdAt: Date;
-  content: string;
-  category: $Enums.Category;
-  tags: {
-    name: string;
-  }[];
 };
 
-export default function PostCard({
-  title,
-  imageUrl,
-  author,
-  createdAt,
-  content,
-  category,
-  tags,
-}: Props) {
+export default function PostCard({ post }: Props) {
+  const href = `/posts/${post.id}`;
+
   return (
-    <article className="mb-4 overflow-hidden rounded-lg bg-white">
+    <article className="mb-4 overflow-hidden rounded-lg bg-background">
       <div
         className={cn(
           "relative",
-          { "h-8": imageUrl === null },
-          { "h-32": imageUrl !== null },
+          { "h-8": post.imageUrl === null },
+          { "h-32": post.imageUrl !== null },
         )}>
-        {imageUrl && (
+        {post.imageUrl && (
           <Image
             className="w-full object-cover object-center"
-            src={imageUrl}
+            src={post.imageUrl}
             fill
-            alt={title}
+            alt={post.title}
           />
         )}
         <Link
-          className="absolute left-2 top-2 inline-block rounded-full bg-slate-100 px-2"
+          className="absolute left-2 top-2 inline-block rounded-full bg-secondary px-2 text-secondary-foreground"
           href="#">
-          {categoryFormatter[category]}
+          {categoryFormatter[post.category]}
         </Link>
       </div>
       <div className="p-4">
         <header className="mb-2">
-          <div className="mb-1 flex items-center gap-2 text-slate-500">
+          <div className="mb-1 flex items-center gap-2 text-muted-foreground">
             <Image
               className="h-4 w-4 rounded-full"
               src={placeholderAvatar}
@@ -61,33 +52,39 @@ export default function PostCard({
               height={50}
               alt=""
             />
-            <span>{author.name}</span>
+            <span>{post.author.name}</span>
             <time
               className="ml-auto"
-              dateTime={createdAt.toString()}
-              title={createdAt.toLocaleString("zh-cn")}>
-              {formatDate(createdAt)}
+              dateTime={post.createdAt.toString()}
+              title={post.createdAt.toLocaleString("zh-cn")}>
+              {formatDate(post.createdAt)}
             </time>
           </div>
           <h3 className="text-xl font-bold underline underline-offset-4">
-            <Link className="transition-opacity hover:opacity-50" href="#">
-              {title}
+            <Link
+              className="transition-opacity hover:opacity-50"
+              href={`/posts/${post.id}`}>
+              {post.title}
             </Link>
           </h3>
         </header>
-        <p className="mb-4 text-slate-500">{content}</p>
+        <Link
+          className="mb-4 block text-muted-foreground hover:underline"
+          href={href}>
+          {post.content}
+        </Link>
         <div className="mb-2 flex gap-1">
-          {tags.map(function renderTag(tag) {
+          {post.tags.map(function renderTag(tag) {
             return (
               <span
                 key={tag.name}
-                className="rounded-full bg-slate-400 px-2 text-sm text-white">
+                className="rounded-full bg-muted px-2 text-sm text-muted-foreground">
                 {tag.name}
               </span>
             );
           })}
         </div>
-        <footer className="flex flex-wrap gap-2 border-t-2 border-slate-200 pt-2 text-sm text-slate-500">
+        <footer className="flex flex-wrap gap-2 border-t-2 border-muted pt-2 text-sm text-muted-foreground">
           <div className="flex gap-1">
             <CommentsIcon />
             <span>{5}</span>
