@@ -38,7 +38,9 @@ function ActionButtons({ user }: Props) {
       <ThemeToggle />
       {user === null ? (
         <div className="flex items-center gap-2 sm:hidden">
-          <Link href="#" className={buttonVariants({ variant: "secondary" })}>
+          <Link
+            href="/login"
+            className={buttonVariants({ variant: "secondary" })}>
             登录
           </Link>
           <Link href="/signup" className={buttonVariants()}>

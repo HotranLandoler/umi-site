@@ -4,32 +4,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ZodError } from "zod";
+import { toast } from "sonner";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { signUpFormSchema, type SignUpFormValidator } from "@/lib/auth-schema";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import RightArrow from "@/components/icons/right-arrow";
 import { trpc } from "@/lib/trpc-client";
-import { ZodError } from "zod";
-import { toast } from "sonner";
+import { LoginFormValidator, loginFormSchema } from "@/lib/auth-schema";
 
-export default function SignUp() {
-  const form = useForm<SignUpFormValidator>({
-    resolver: zodResolver(signUpFormSchema),
+export default function Login() {
+  const form = useForm<LoginFormValidator>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
@@ -37,10 +34,10 @@ export default function SignUp() {
 
   const router = useRouter();
 
-  const { mutate: createUser, isPending } = trpc.auth.createUser.useMutation({
-    onError: function onCreateUserFailed(error) {
-      if (error.data?.code === "CONFLICT") {
-        toast.error("该邮箱已被使用，试试登录？");
+  const { mutate: login, isPending } = trpc.auth.login.useMutation({
+    onError: function onLoginFailed(error) {
+      if (error.data?.code === "UNAUTHORIZED") {
+        toast.error("邮箱或密码错误");
         return;
       }
 
@@ -51,8 +48,8 @@ export default function SignUp() {
 
       toast.error("出现了未知问题，请再试一次。");
     },
-    onSuccess: function onCreateUserSucess(output) {
-      toast.success(`验证码已发送到邮箱${output.sendToEmail}`);
+    onSuccess: function onLoginSucess() {
+      toast.success("登录成功");
       router.push("/");
       router.refresh();
     },
@@ -60,30 +57,9 @@ export default function SignUp() {
 
   return (
     <>
-      <h1 className="mb-4 text-center text-3xl">加入UMi社区</h1>
+      <h1 className="mb-4 text-center text-3xl">登录UMi社区</h1>
       <Form {...form}>
         <form className="mb-4" onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem className="mb-4">
-                <FormLabel>用户名</FormLabel>
-                <FormControl>
-                  <Input
-                    className={cn({
-                      "focus-visible:ring-red-500":
-                        form.formState.errors.username,
-                    })}
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>您发表内容时将使用的名字</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="email"
@@ -100,7 +76,6 @@ export default function SignUp() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>用于登录，不会对外显示</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -121,7 +96,6 @@ export default function SignUp() {
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>至少8位</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -129,7 +103,7 @@ export default function SignUp() {
 
           <Button className="w-full" type="submit" disabled={isPending}>
             {isPending && <LoaderCircle className="animate-spin" />}
-            注册
+            登录
           </Button>
         </form>
       </Form>
@@ -139,15 +113,15 @@ export default function SignUp() {
             "group/button mx-auto",
             buttonVariants({ variant: "link" }),
           )}
-          href="/login">
-          已有账号？去登录
+          href="/signup">
+          还没有UMi账户？去注册
           <RightArrow />
         </Link>
       </div>
     </>
   );
 
-  async function onSubmit(values: SignUpFormValidator) {
-    createUser(values);
+  async function onSubmit(values: LoginFormValidator) {
+    login(values);
   }
 }

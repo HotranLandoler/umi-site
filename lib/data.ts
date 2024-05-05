@@ -50,6 +50,14 @@ export const umiDbSections: PageData[] = [
   },
 ];
 
+export const argon2Setting = {
+  // recommended minimum parameters
+  memoryCost: 19456,
+  timeCost: 2,
+  hashLength: 32,
+  parallelism: 1,
+};
+
 export async function fetchFeed(): Promise<BlogItem[]> {
   await new Promise((resolve) => setTimeout(resolve, 5000));
   return feed;

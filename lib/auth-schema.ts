@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const authFormSchema = z.object({
+export const signUpFormSchema = z.object({
   username: z.string().min(1, {
     message: "用户名为必填项",
   }),
@@ -12,4 +12,14 @@ export const authFormSchema = z.object({
   }),
 });
 
-export type AuthFormValidator = z.infer<typeof authFormSchema>;
+export const loginFormSchema = z.object({
+  email: z.string().email({
+    message: "请输入正确的邮箱地址",
+  }),
+  password: z.string().min(1, {
+    message: "密码不可为空",
+  }),
+});
+
+export type SignUpFormValidator = z.infer<typeof signUpFormSchema>;
+export type LoginFormValidator = z.infer<typeof loginFormSchema>;
