@@ -7,6 +7,7 @@ import Logo from "../logo";
 import { buttonVariants } from "../ui/button";
 import ThemeToggle from "../theme-toggle";
 import RoundedCornerImage from "../rounded-corner";
+import UserDropdown from "../user-dropdown";
 
 type Props = {
   user: User | null;
@@ -33,7 +34,7 @@ export default function MainHeader({ user }: Props) {
 
 function ActionButtons({ user }: Props) {
   return (
-    <div className="flex items-center gap-4 sm:hidden">
+    <div className="flex items-center gap-8 sm:hidden">
       <ThemeToggle />
       {user === null ? (
         <div className="flex items-center gap-2 sm:hidden">
@@ -45,7 +46,7 @@ function ActionButtons({ user }: Props) {
           </Link>
         </div>
       ) : (
-        <div>{user.name}</div>
+        <UserDropdown user={user} />
       )}
     </div>
   );
