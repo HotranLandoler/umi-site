@@ -17,7 +17,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { signUpFormSchema, type SignUpFormValidator } from "@/lib/auth-schema";
+import {
+  signUpFormSchema,
+  type SignUpFormValidator,
+} from "@/lib/schemas/auth-schema";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import RightArrow from "@/components/icons/right-arrow";

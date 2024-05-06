@@ -3,6 +3,7 @@ import { $Enums } from "@prisma/client";
 
 export type PageData = {
   name: string;
+  key: string;
   desc: string;
   href: string;
 };
@@ -21,21 +22,25 @@ export const categoryFormatter = {
 export const umiDbSections: PageData[] = [
   {
     name: categoryFormatter[$Enums.Category.GAMEREC],
+    key: $Enums.Category.GAMEREC,
     desc: "推荐喜欢的游戏",
     href: "/gamerec",
   },
   {
     name: categoryFormatter[$Enums.Category.KNOWLEDGE],
+    key: $Enums.Category.KNOWLEDGE,
     desc: "分享游戏设计与开发的知识",
     href: "/knowledge",
   },
   {
     name: categoryFormatter[$Enums.Category.TOOLS],
+    key: $Enums.Category.TOOLS,
     desc: "游戏开发相关的好物",
     href: "/tools",
   },
   {
     name: categoryFormatter[$Enums.Category.HISTORY],
+    key: $Enums.Category.HISTORY,
     desc: "我们社团的历史记录",
     href: "/history",
   },

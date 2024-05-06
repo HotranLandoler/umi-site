@@ -11,6 +11,10 @@ type Props = {
 };
 
 export default function PostPage({ params: { id } }: Props) {
+  if (Number.isNaN(Number(id))) {
+    notFound();
+  }
+
   const [post] = trpc.post.byId.useSuspenseQuery(Number(id));
 
   if (!post) {

@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import RightArrow from "@/components/icons/right-arrow";
 import { trpc } from "@/lib/trpc-client";
-import { LoginFormValidator, loginFormSchema } from "@/lib/auth-schema";
+import { LoginFormValidator, loginFormSchema } from "@/lib/schemas/auth-schema";
 
 export default function Login() {
   const form = useForm<LoginFormValidator>({

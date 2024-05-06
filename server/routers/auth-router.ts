@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { hash, verify } from "argon2";
 import { cookies } from "next/headers";
 
-import { loginFormSchema, signUpFormSchema } from "@/lib/auth-schema";
+import { loginFormSchema, signUpFormSchema } from "@/lib/schemas/auth-schema";
 import { publicProcedure, router } from "../trpc";
 import { prisma } from "@/lib/prisma";
 import { sendVerificationEmail } from "../actions";

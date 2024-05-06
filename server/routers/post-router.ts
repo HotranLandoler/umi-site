@@ -2,11 +2,12 @@ import { z } from "zod";
 import { publicProcedure, router } from "../trpc";
 import { prisma } from "@/lib/prisma";
 import { TRPCError } from "@trpc/server";
+import { postSchema } from "@/lib/schemas/post-schema";
+import { $Enums } from "@prisma/client";
 
 export const postRouter = router({
   all: publicProcedure.query(async function queryAllPosts() {
     const posts = await prisma.post.findMany({
-      where: { published: true },
       include: {
         author: {
           select: { name: true },
@@ -27,5 +28,17 @@ export const postRouter = router({
       },
     });
     return post;
+  }),
+  create: publicProcedure.input(postSchema).mutation(async function createPost({
+    input,
+  }) {
+    const { id: postId } = await prisma.post.create({
+      data: {
+        ...input,
+        category: $Enums.Category.GAMEREC,
+      },
+    });
+
+    return { success: true, postId };
   }),
 });
