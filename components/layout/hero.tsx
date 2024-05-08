@@ -16,9 +16,10 @@ function Heading() {
   return (
     <div className="flex items-end leading-10">
       <h1 className="text-6xl/tight font-bold">
-        欢迎来到<br />
+        欢迎来到
+        <br />
         UMi数据库主页
-        </h1>
+      </h1>
     </div>
   );
 }
@@ -40,10 +41,12 @@ function CTA() {
         欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
       </p>
       <div className="flex gap-4">
-        <Link className={buttonVariants()} href="#">
+        <Link className={buttonVariants({ size: "lg" })} href="#">
           发表内容
         </Link>
-        <Link className={buttonVariants({ variant: "secondary" })} href="#feed">
+        <Link
+          className={buttonVariants({ size: "lg", variant: "secondary" })}
+          href="#feed">
           最新动态
         </Link>
       </div>

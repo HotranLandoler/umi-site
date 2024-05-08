@@ -9,6 +9,7 @@ import LatestPosts from "@/components/posts/latest-posts";
 import { getAllGames } from "@/lib/mdx-data";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import AddPostLink from "@/components/posts/add-post-link";
 
 export default async function Home() {
   return (
@@ -48,6 +49,7 @@ function Feed() {
     <section id="feed">
       <header className="mb-8 flex items-center gap-8">
         <h2 className="text-3xl font-bold">最新动态</h2>
+        <AddPostLink />
       </header>
       <Suspense fallback={<p>loading in suspense...</p>}>
         <LatestPosts />
