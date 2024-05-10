@@ -41,7 +41,7 @@ export default function CreatePost() {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <>
+    <div className="main-container">
       <h1 className="mb-4 text-center text-3xl">发表分享</h1>
       <Form {...form}>
         <form className="mb-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -118,7 +118,7 @@ export default function CreatePost() {
           </Button>
         </form>
       </Form>
-    </>
+    </div>
   );
 
   async function onSubmit(values: PostFormValidator) {

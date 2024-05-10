@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function Page() {
   const allGames = getAllGames();
   return (
-    <>
+    <div className="main-container">
       <header className="mb-8">
         <h1 className="mb-4 text-4xl font-bold">UMi的游戏</h1>
         <p>{description}</p>
       </header>
       <Games games={allGames} />
-    </>
+    </div>
   );
 }

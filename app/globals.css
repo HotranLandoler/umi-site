@@ -66,4 +66,7 @@
     --tw-translate-x: calc(-50% + var(--offset));
     --tw-translate-y: calc(-50% + var(--offset));
   }
+  .main-container {
+    @apply px-12 pt-12 md:px-8 md:pt-8;
+  }
 }

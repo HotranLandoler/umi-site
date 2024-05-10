@@ -19,7 +19,7 @@ export default async function PostPage({ params: { id } }: Props) {
   }
 
   return (
-    <article>
+    <article className="main-container">
       <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
       <p>{post.content}</p>
     </article>

@@ -3,6 +3,7 @@ import { getAllGames } from "@/lib/mdx-data";
 import { baseUrl } from "@/app/sitemap";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { PropsWithChildren } from "react";
 
 type Props = {
   params: {
@@ -69,14 +70,35 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <article>
-      <header className="mb-8 grid grid-cols-[2fr_3fr] gap-8">
-        <div>
-          <h1 className="mb-4 text-3xl font-bold">{game.metadata.title}</h1>
-          <p className="mb-8">{game.metadata.excerpt}</p>
-          <dl className="grid grid-cols-2">
-            <dt>发布日期</dt>
+      <header className="mb-8">
+        <div className="grid min-h-72 grid-cols-2 grid-rows-8">
+          <div
+            className="col-start-1 col-end-3 row-start-1 row-end-8 rounded-lg bg-cover bg-fixed bg-center"
+            style={{ backgroundImage: `url('${game.metadata.bannerImage}')` }}>
+            <div className="grid h-full grid-cols-[auto_1fr] items-end gap-8 p-8 backdrop-blur-lg">
+              <div className="-z-10 rounded-lg bg-white/40 p-4">
+                <h1 className="mb-4 text-3xl font-bold text-black">
+                  {game.metadata.title}
+                </h1>
+                <p>{game.metadata.excerpt}</p>
+              </div>
+            </div>
+          </div>
+          <Image
+            className="z-[1] col-start-2 row-start-2 row-end-9 rounded-2xl"
+            src={game.metadata.coverImage}
+            width={315}
+            height={250}
+            alt={`Image for game ${game.metadata.title}`}
+          />
+        </div>
+        <dl className="main-container grid grid-cols-2 gap-x-8 gap-y-4">
+          <div className="border-b-2 pb-2">
+            <MetaTitle>发布日期</MetaTitle>
             <dd>{game.metadata.releaseDate}</dd>
-            <dt>开发团队</dt>
+          </div>
+          <div className="row-span-2">
+            <MetaTitle>开发团队</MetaTitle>
             <dd>
               <ul>
                 {game.metadata.authors.map(function renderAuthor(author) {
@@ -87,27 +109,29 @@ export default function Page({ params }: { params: { slug: string } }) {
                 })}
               </ul>
             </dd>
-            <dt>试玩/下载链接</dt>
+          </div>
+          <div>
+            <MetaTitle>试玩/下载链接</MetaTitle>
             <dd>
               <a
-                className="text-slate-700 underline"
+                className="text-primary underline"
                 href={game.metadata.link}
                 target="_blank"
                 rel="noopener noreferer">
                 {game.metadata.link}
               </a>
             </dd>
-          </dl>
-        </div>
-        <Image
-          className="w-full rounded-2xl"
-          src={game.metadata.bannerImage}
-          width={1280}
-          height={720}
-          alt={`Image for game ${game.metadata.title}`}
-        />
+          </div>
+        </dl>
       </header>
-      <MDXRemote source={game.content} />
+
+      <div className="main-container pt-0">
+        <MDXRemote source={game.content} />
+      </div>
     </article>
   );
+}
+
+function MetaTitle({ children }: PropsWithChildren) {
+  return <dt className="mb-2 font-bold">{children}</dt>;
 }

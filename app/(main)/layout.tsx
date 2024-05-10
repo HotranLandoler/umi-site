@@ -13,7 +13,7 @@ export default async function MainLayout({
       <SideBar />
       <MainHeader />
       <main className="rounded-[2rem] bg-muted/50">
-        <div className="flex h-full flex-col p-12 md:p-8">
+        <div className="flex h-full flex-col">
           <div className="flex-grow">{children}</div>
           <MainFooter />
         </div>

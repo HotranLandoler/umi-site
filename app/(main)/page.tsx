@@ -13,11 +13,11 @@ import AddPostLink from "@/components/posts/add-post-link";
 
 export default async function Home() {
   return (
-    <>
+    <div className="main-container">
       <Hero />
       <OurGames />
       <Feed />
-    </>
+    </div>
   );
 }
 
