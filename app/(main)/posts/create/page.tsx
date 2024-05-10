@@ -3,10 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { z, ZodError } from "zod";
 import { toast } from "sonner";
+import { useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,35 +24,21 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { trpc } from "@/lib/trpc-client";
 import { umiDbSections } from "@/lib/data";
 import { PostFormValidator, postSchema } from "@/lib/schemas/post-schema";
+import { createPost } from "@/server/actions/post-actions";
 
 export default function CreatePost() {
   const form = useForm<PostFormValidator>({
     resolver: zodResolver(postSchema),
     defaultValues: {
-      authorId: "111",
       title: "",
       category: umiDbSections[0].key,
       content: "",
     },
   });
 
-  const router = useRouter();
-
-  const { mutate: createPost, isPending } = trpc.post.create.useMutation({
-    onError: function onPostCreationFailed(error) {
-      console.log(error);
-
-      toast.error("出现了未知问题，请再试一次。");
-    },
-    onSuccess: function onPostCreated({ postId }) {
-      toast.success("发表成功");
-      router.push(`/posts/${postId}`);
-      router.refresh();
-    },
-  });
+  const [isPending, startTransition] = useTransition();
 
   return (
     <>
@@ -138,10 +122,12 @@ export default function CreatePost() {
   );
 
   async function onSubmit(values: PostFormValidator) {
-    console.log(1);
-    createPost({
-      ...values,
-      authorId: "kykx44ygfsnmf6n2",
+    startTransition(() => {
+      createPost(values).then(function onPostCreated(result) {
+        if (!result.success) {
+          toast.error(result.error);
+        }
+      });
     });
   }
 }

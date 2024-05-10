@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { User } from "lucia";
+// import { User } from "lucia";
 
 import Search from "../search";
 import Logo from "../logo";
@@ -8,14 +8,16 @@ import { buttonVariants } from "../ui/button";
 import ThemeToggle from "../theme-toggle";
 import RoundedCornerImage from "../rounded-corner";
 import UserDropdown from "../user-dropdown";
+// import { getUser } from "@/lib/dal";
+import { auth } from "@/auth";
+import { User } from "next-auth";
 
-type Props = {
-  user: User | null;
-};
+export default async function MainHeader() {
+  const session = await auth();
 
-export default function MainHeader({ user }: Props) {
   return (
     <div className="sticky top-0 z-10 bg-background py-4">
+      <div>{JSON.stringify(session)}</div>
       <header className="flex justify-between rounded-full bg-muted/50 px-12 py-4 md:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <Logo className="w-12" />
@@ -24,7 +26,7 @@ export default function MainHeader({ user }: Props) {
         <Suspense>
           <Search />
         </Suspense>
-        <ActionButtons user={user} />
+        <ActionButtons user={session?.user} />
       </header>
       <RoundedCornerImage className="-bottom-[35px] left-0 rotate-90" />
       <RoundedCornerImage className="-bottom-[35px] right-0 rotate-180" />
@@ -32,11 +34,11 @@ export default function MainHeader({ user }: Props) {
   );
 }
 
-function ActionButtons({ user }: Props) {
+function ActionButtons({ user }: { user: User | undefined }) {
   return (
     <div className="flex items-center gap-8 sm:hidden">
       <ThemeToggle />
-      {user === null ? (
+      {user == null ? (
         <div className="flex items-center gap-2 sm:hidden">
           <Link
             href="/login"

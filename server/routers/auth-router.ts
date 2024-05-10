@@ -8,7 +8,7 @@ import { prisma } from "@/lib/prisma";
 import { sendVerificationEmail } from "../actions";
 import { generateOTP } from "@/lib/utils";
 import { z } from "zod";
-import { lucia } from "@/lib/lucia";
+// import { lucia } from "@/lib/lucia";
 import { generateIdFromEntropySize } from "lucia";
 import { argon2Setting } from "@/lib/data";
 
@@ -27,6 +27,7 @@ export const authRouter = router({
       }
 
       const passwordHash = await hash(input.password, argon2Setting);
+      // const passwordHash = input.password;
       const userId = generateIdFromEntropySize(10);
 
       await prisma.user.create({
@@ -44,13 +45,13 @@ export const authRouter = router({
       //   verificationCode,
       // );
 
-      const session = await lucia.createSession(userId, {});
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
-        sessionCookie.name,
-        sessionCookie.value,
-        sessionCookie.attributes,
-      );
+      // const session = await lucia.createSession(userId, {});
+      // const sessionCookie = lucia.createSessionCookie(session.id);
+      // cookies().set(
+      //   sessionCookie.name,
+      //   sessionCookie.value,
+      //   sessionCookie.attributes,
+      // );
 
       return { success: true, sendToEmail: input.email };
     }),
@@ -70,19 +71,23 @@ export const authRouter = router({
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
 
-    const matchPassword = await verify(user.password, input.password);
+    const matchPassword = user.password === input.password;
+    // const matchPassword = await verify(user.password, input.password);
     if (!matchPassword) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
 
-    const session = await lucia.createSession(user.id, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    // const session = await lucia.createSession(user.id, {});
+    // const sessionCookie = lucia.createSessionCookie(session.id);
+    // cookies().set(
+    //   sessionCookie.name,
+    //   sessionCookie.value,
+    //   sessionCookie.attributes,
+    // );
+
+    // TODO
     return {
+      user: user,
       success: true,
     };
   }),

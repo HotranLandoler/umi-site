@@ -1,9 +1,10 @@
 "use client";
 
-import { User } from "lucia";
+import { User } from "next-auth";
 import { ChevronDown } from "lucide-react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { logout } from "@/server/actions/auth-actions";
 
 import {
   DropdownMenu,
@@ -13,13 +14,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { logout } from "@/server/actions";
 import { Button } from "./ui/button";
-import Link from "next/link";
 
 export default function UserDropdown({ user }: { user: User }) {
-  const router = useRouter();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -46,12 +43,7 @@ export default function UserDropdown({ user }: { user: User }) {
   );
 
   async function handleLogout() {
-    const result = await logout();
-    if (!result.success) {
-      toast.error(result.error);
-      return;
-    }
+    await logout();
     toast.success("已退出登录");
-    router.refresh();
   }
 }

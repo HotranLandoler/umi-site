@@ -13,3 +13,12 @@ export type GameMeta = {
   ogImage: string;
   link: string;
 };
+
+export type ActionResult =
+  | {
+      success: true;
+    }
+  | {
+      success: false;
+      error: string;
+    };

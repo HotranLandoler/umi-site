@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -24,9 +24,9 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import RightArrow from "@/components/icons/right-arrow";
-import { trpc } from "@/lib/trpc-client";
 import { ZodError } from "zod";
 import { toast } from "sonner";
+import { signUp } from "@/server/actions/auth-actions";
 
 export default function SignUp() {
   const form = useForm<SignUpFormValidator>({
@@ -38,28 +38,7 @@ export default function SignUp() {
     },
   });
 
-  const router = useRouter();
-
-  const { mutate: createUser, isPending } = trpc.auth.createUser.useMutation({
-    onError: function onCreateUserFailed(error) {
-      if (error.data?.code === "CONFLICT") {
-        toast.error("该邮箱已被使用，试试登录？");
-        return;
-      }
-
-      if (error instanceof ZodError) {
-        toast.error(error.issues[0].message);
-        return;
-      }
-
-      toast.error("出现了未知问题，请再试一次。");
-    },
-    onSuccess: function onCreateUserSucess(output) {
-      toast.success(`验证码已发送到邮箱${output.sendToEmail}`);
-      router.push("/");
-      router.refresh();
-    },
-  });
+  const [isPending, startTransition] = useTransition();
 
   return (
     <>
@@ -151,6 +130,14 @@ export default function SignUp() {
   );
 
   async function onSubmit(values: SignUpFormValidator) {
-    createUser(values);
+    startTransition(() => {
+      signUp(values).then(function onSignUp(result) {
+        if (!result.success) {
+          toast.error(result.error);
+          return;
+        }
+        toast.success("注册成功");
+      });
+    });
   }
 }

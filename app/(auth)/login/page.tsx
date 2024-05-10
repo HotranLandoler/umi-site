@@ -3,10 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ZodError } from "zod";
 import { toast } from "sonner";
+import { useTransition } from "react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -20,8 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import RightArrow from "@/components/icons/right-arrow";
-import { trpc } from "@/lib/trpc-client";
 import { LoginFormValidator, loginFormSchema } from "@/lib/schemas/auth-schema";
+import { login } from "@/server/actions/auth-actions";
 
 export default function Login() {
   const form = useForm<LoginFormValidator>({
@@ -32,28 +31,7 @@ export default function Login() {
     },
   });
 
-  const router = useRouter();
-
-  const { mutate: login, isPending } = trpc.auth.login.useMutation({
-    onError: function onLoginFailed(error) {
-      if (error.data?.code === "UNAUTHORIZED") {
-        toast.error("邮箱或密码错误");
-        return;
-      }
-
-      if (error instanceof ZodError) {
-        toast.error(error.issues[0].message);
-        return;
-      }
-
-      toast.error("出现了未知问题，请再试一次。");
-    },
-    onSuccess: function onLoginSucess() {
-      toast.success("登录成功");
-      router.push("/");
-      router.refresh();
-    },
-  });
+  const [isPending, startTransition] = useTransition();
 
   return (
     <>
@@ -122,6 +100,14 @@ export default function Login() {
   );
 
   async function onSubmit(values: LoginFormValidator) {
-    login(values);
+    startTransition(() => {
+      login(values).then(function onLogin(result) {
+        if (!result.success) {
+          toast.error(result.error);
+          return;
+        }
+        toast.success("登录成功");
+      });
+    });
   }
 }

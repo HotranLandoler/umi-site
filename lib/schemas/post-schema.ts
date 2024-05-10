@@ -1,11 +1,11 @@
+import { Category } from "@prisma/client";
 import { z } from "zod";
 
 export const postSchema = z.object({
-  authorId: z.string(),
   title: z.string().min(1, {
     message: "标题不可为空",
   }),
-  category: z.string(),
+  category: z.nativeEnum(Category),
   content: z.string(),
 });
 
