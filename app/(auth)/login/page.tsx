@@ -102,7 +102,7 @@ export default function Login() {
   async function onSubmit(values: LoginFormValidator) {
     startTransition(() => {
       login(values).then(function onLogin(result) {
-        if (!result.success) {
+        if (result && !result.success) {
           toast.error(result.error);
           return;
         }

@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { umiDbSections } from "@/lib/data";
+import { umiDbSections } from "@/data/site-data";
 import { PostFormValidator, postSchema } from "@/lib/schemas/post-schema";
 import { createPost } from "@/server/actions/post-actions";
 
@@ -124,7 +124,7 @@ export default function CreatePost() {
   async function onSubmit(values: PostFormValidator) {
     startTransition(() => {
       createPost(values).then(function onPostCreated(result) {
-        if (!result.success) {
+        if (result && !result.success) {
           toast.error(result.error);
         }
       });

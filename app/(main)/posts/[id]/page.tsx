@@ -1,8 +1,5 @@
-"use client";
-
+import { getPostById } from "@/data/post-data";
 import { notFound } from "next/navigation";
-
-import { trpc } from "@/lib/trpc-client";
 
 type Props = {
   params: {
@@ -10,12 +7,12 @@ type Props = {
   };
 };
 
-export default function PostPage({ params: { id } }: Props) {
+export default async function PostPage({ params: { id } }: Props) {
   if (Number.isNaN(Number(id))) {
     notFound();
   }
 
-  const [post] = trpc.post.byId.useSuspenseQuery(Number(id));
+  const post = await getPostById(Number(id));
 
   if (!post) {
     notFound();

@@ -2,14 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { PageData } from "@/lib/data";
+import { umiDbSections } from "@/data/site-data";
 import Link from "next/link";
 
-type Props = {
-  umiDbSections: PageData[];
-};
-
-export default function Nav({ umiDbSections }: Props) {
+export default function Nav() {
   const pathName = usePathname();
 
   return (

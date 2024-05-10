@@ -1,17 +1,26 @@
-import { feed } from "./placeholder-data";
+import type { Options } from "@node-rs/argon2";
 import { Category } from "@prisma/client";
 
-export type PageData = {
+type PageData = {
   name: string;
   key: Category;
   desc: string;
   href: string;
 };
 
+/**
+ * 网站标题
+ */
 export const siteTitle = "UMi游研社";
 
+/**
+ * 网站公告
+ */
 export const siteAnnouncement = "网站建设中 - 功能和数据可能变化";
 
+/**
+ * 数据库主要类别的标签
+ */
 export const categoryFormatter = {
   [Category.GAMEREC]: "游戏推荐",
   [Category.KNOWLEDGE]: "知识分享",
@@ -19,6 +28,9 @@ export const categoryFormatter = {
   [Category.HISTORY]: "岁月史书",
 };
 
+/**
+ * 数据库主要类别的数据
+ */
 export const umiDbSections: PageData[] = [
   {
     name: categoryFormatter[Category.GAMEREC],
@@ -46,10 +58,13 @@ export const umiDbSections: PageData[] = [
   },
 ];
 
-export const argon2Setting = {
+/**
+ * [@node-rs/argon2]设置
+ */
+export const argon2Setting: Options = {
   // recommended minimum parameters
   memoryCost: 19456,
   timeCost: 2,
-  hashLength: 32,
+  outputLen: 32,
   parallelism: 1,
 };

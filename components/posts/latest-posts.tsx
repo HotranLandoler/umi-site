@@ -1,13 +1,11 @@
-"use client";
-
 import PostCard from "@/components/posts/post-card";
 
-import { trpc } from "@/lib/trpc-client";
 import { HeartCrack } from "lucide-react";
 import AddPostLink from "./add-post-link";
+import { getAllPosts } from "@/data/post-data";
 
-export default function LatestPosts() {
-  const [posts] = trpc.post.all.useSuspenseQuery();
+export default async function LatestPosts() {
+  const posts = await getAllPosts();
 
   if (!posts || posts.length === 0) {
     return (

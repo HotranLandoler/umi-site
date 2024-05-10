@@ -1,4 +1,4 @@
-import { siteAnnouncement } from "@/lib/data";
+import { siteAnnouncement } from "@/data/site-data";
 
 export default function Announcement() {
   return (

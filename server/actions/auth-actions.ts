@@ -1,6 +1,6 @@
 "use server";
 
-import { hash } from "argon2";
+import { hash } from "@node-rs/argon2";
 import { AuthError } from "next-auth";
 
 import {
@@ -9,7 +9,7 @@ import {
   signUpFormSchema,
   SignUpFormValidator,
 } from "@/lib/schemas/auth-schema";
-import { argon2Setting } from "@/lib/data";
+import { argon2Setting } from "@/data/site-data";
 import { prisma } from "@/lib/prisma";
 import { signIn, signOut } from "@/auth";
 import type { ActionResult } from "@/lib/interfaces";

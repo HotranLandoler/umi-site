@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { type PageData, umiDbSections } from "@/lib/data";
+import { type PageData, umiDbSections } from "@/data/site-data";
 import { buttonVariants } from "../ui/button";
 
 export default function Hero() {

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
 import { cn, formatDate } from "@/lib/utils";
-import { categoryFormatter } from "@/lib/data";
+import { categoryFormatter } from "@/data/site-data";
 
 type Props = {
   post: Post & {

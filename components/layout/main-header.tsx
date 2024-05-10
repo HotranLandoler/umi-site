@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-// import { User } from "lucia";
+import { User } from "next-auth";
 
 import Search from "../search";
 import Logo from "../logo";
@@ -8,16 +8,13 @@ import { buttonVariants } from "../ui/button";
 import ThemeToggle from "../theme-toggle";
 import RoundedCornerImage from "../rounded-corner";
 import UserDropdown from "../user-dropdown";
-// import { getUser } from "@/lib/dal";
 import { auth } from "@/auth";
-import { User } from "next-auth";
 
 export default async function MainHeader() {
   const session = await auth();
 
   return (
     <div className="sticky top-0 z-10 bg-background py-4">
-      <div>{JSON.stringify(session)}</div>
       <header className="flex justify-between rounded-full bg-muted/50 px-12 py-4 md:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <Logo className="w-12" />

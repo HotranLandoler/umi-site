@@ -3,12 +3,11 @@ import { Noto_Sans_SC } from "next/font/google";
 
 import Announcement from "@/components/layout/announcement";
 import { ThemeProvider } from "@/components/layout/theme-provider";
-import TRPCProviders from "@/components/trpc-providers";
 
 import "@/app/globals.css";
 import "@theme-toggles/react/css/Expand.css";
 
-import { siteTitle } from "@/lib/data";
+import { siteTitle } from "@/data/site-data";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -34,12 +33,10 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={cn("font-sans", notoSans.variable)}>
-        <TRPCProviders>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <Announcement />
-            {children}
-          </ThemeProvider>
-        </TRPCProviders>
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <Announcement />
+          {children}
+        </ThemeProvider>
         <Toaster position="top-center" richColors />
       </body>
     </html>

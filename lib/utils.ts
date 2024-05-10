@@ -28,11 +28,3 @@ export function formatDate(date: Date): string {
     return "今天";
   }
 }
-
-export function generateOTP(digits = 6): string {
-  let code = "";
-  for (let index = 0; index < digits; index++) {
-    code += Math.round(Math.random() * 10).toString();
-  }
-  return code;
-}
