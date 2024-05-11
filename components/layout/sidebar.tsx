@@ -1,5 +1,5 @@
 import SocialLinks from "../social-links";
-import Nav from "../nav";
+import { Nav } from "../nav";
 import Logo from "../logo";
 
 export default function SideBar() {

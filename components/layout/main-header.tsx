@@ -9,6 +9,7 @@ import ThemeToggle from "../theme-toggle";
 import RoundedCornerImage from "../rounded-corner";
 import UserDropdown from "../user-dropdown";
 import { auth } from "@/auth";
+import { MobileNav } from "../nav";
 
 export default async function MainHeader() {
   const session = await auth();
@@ -49,6 +50,7 @@ function ActionButtons({ user }: { user: User | undefined }) {
       ) : (
         <UserDropdown user={user} />
       )}
+      <MobileNav />
     </div>
   );
 }

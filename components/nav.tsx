@@ -4,12 +4,14 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { categoryBaseUrl, umiDbSections } from "@/data/site-data";
 import Link from "next/link";
+import { useState } from "react";
+import Hamburger from "./hamburger";
 
-export default function Nav() {
+export function Nav({ id }: { id?: string }) {
   const pathName = usePathname();
 
   return (
-    <nav>
+    <nav id={id}>
       <ul className="flex flex-col gap-1">
         <NavLink href="/">首页</NavLink>
         <SplitLine />
@@ -52,6 +54,27 @@ export default function Nav() {
       </li>
     );
   }
+}
+
+export function MobileNav() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
+      <div
+        className={cn(
+          "mobile-nav hidden bg-background pt-36 text-center text-2xl transition-opacity sm:block",
+          {
+            open: isOpen,
+          },
+        )}>
+        <div className="flex items-center justify-center">
+          <Nav id="mobile-nav" />
+        </div>
+      </div>
+    </>
+  );
 }
 
 function SplitLine() {
