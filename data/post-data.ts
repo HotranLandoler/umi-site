@@ -27,7 +27,20 @@ export type PostFullType = NonNullable<
 
 export async function getAllPosts() {
   const posts = await prisma.post.findMany({
-    include: includeFields,
+    include: {
+      author: {
+        select: { name: true },
+      },
+      tags: {
+        select: { name: true },
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        },
+      },
+    },
   });
   return posts;
 }
@@ -37,7 +50,20 @@ export async function getPostsByCategory(category: Category) {
     where: {
       category: category,
     },
-    include: includeFields,
+    include: {
+      author: {
+        select: { name: true },
+      },
+      tags: {
+        select: { name: true },
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        },
+      },
+    },
   });
   return posts;
 }
