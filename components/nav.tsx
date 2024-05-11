@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { umiDbSections } from "@/data/site-data";
+import { categoryBaseUrl, umiDbSections } from "@/data/site-data";
 import Link from "next/link";
 
 export default function Nav() {
@@ -15,7 +15,9 @@ export default function Nav() {
         <SplitLine />
         {umiDbSections.map(function renderSectionLink(section) {
           return (
-            <NavLink key={section.name} href={section.href}>
+            <NavLink
+              key={section.name}
+              href={`${categoryBaseUrl}/${section.slug}`}>
               {section.name}
             </NavLink>
           );

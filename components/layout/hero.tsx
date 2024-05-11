@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { type PageData, umiDbSections } from "@/data/site-data";
+import { categoryBaseUrl, umiDbSections } from "@/data/site-data";
 import { buttonVariants } from "../ui/button";
+import AddPostLink from "../posts/add-post-link";
 
 export default function Hero() {
   return (
@@ -41,9 +42,7 @@ function CTA() {
         欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
       </p>
       <div className="flex gap-4">
-        <Link className={buttonVariants({ size: "lg" })} href="#">
-          发表内容
-        </Link>
+        <AddPostLink size="lg" />
         <Link
           className={buttonVariants({ size: "lg", variant: "secondary" })}
           href="#feed">
@@ -54,12 +53,12 @@ function CTA() {
   );
 }
 
-function SectionLink({ data }: { data: PageData }) {
+function SectionLink({ data }: { data: (typeof umiDbSections)[number] }) {
   return (
     <li>
       <Link
-        className="block h-full w-full rounded-lg bg-gradient-to-br from-secondary to-primary/40 p-4 transition-shadow hover:shadow-lg hover:shadow-slate-300"
-        href={data.href}>
+        className="block h-full w-full rounded-lg bg-secondary p-4 transition-colors hover:bg-primary"
+        href={`${categoryBaseUrl}/${data.slug}`}>
         <h4 className="text-lg font-bold">{data.name}</h4>
         <p>{data.desc}</p>
       </Link>

@@ -5,7 +5,7 @@ type PageData = {
   name: string;
   key: Category;
   desc: string;
-  href: string;
+  slug: string;
 };
 
 /**
@@ -17,6 +17,11 @@ export const siteTitle = "UMi游研社";
  * 网站公告
  */
 export const siteAnnouncement = "网站建设中 - 功能和数据可能变化";
+
+/**
+ * 数据库分类别浏览的开头URL
+ */
+export const categoryBaseUrl = "/category";
 
 /**
  * 数据库主要类别的标签
@@ -36,25 +41,25 @@ export const umiDbSections: PageData[] = [
     name: categoryFormatter[Category.GAMEREC],
     key: Category.GAMEREC,
     desc: "推荐喜欢的游戏",
-    href: "/gamerec",
+    slug: "gamerec",
   },
   {
     name: categoryFormatter[Category.KNOWLEDGE],
     key: Category.KNOWLEDGE,
     desc: "分享游戏设计与开发的知识",
-    href: "/knowledge",
+    slug: "knowledge",
   },
   {
     name: categoryFormatter[Category.TOOLS],
     key: Category.TOOLS,
     desc: "游戏开发相关的好物",
-    href: "/tools",
+    slug: "tools",
   },
   {
     name: categoryFormatter[Category.HISTORY],
     key: Category.HISTORY,
     desc: "我们社团的历史记录",
-    href: "/history",
+    slug: "history",
   },
 ];
 

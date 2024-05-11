@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <div className="main-container">
       <header className="mb-8">
-        <h1 className="mb-4 text-4xl font-bold">UMi的游戏</h1>
+        <h1 className="page-heading">UMi的游戏</h1>
         <p>{description}</p>
       </header>
       <Games games={allGames} />

@@ -4,12 +4,13 @@ import { Suspense } from "react";
 import Hero from "@/components/layout/hero";
 import Games from "@/components/games/games";
 import RightArrow from "@/components/icons/right-arrow";
-import LatestPosts from "@/components/posts/latest-posts";
 
 import { getAllGames } from "@/lib/mdx-data";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import AddPostLink from "@/components/posts/add-post-link";
+import Posts from "@/components/posts/posts";
+import { getAllPosts } from "@/data/post-data";
 
 export default async function Home() {
   return (
@@ -56,4 +57,9 @@ function Feed() {
       </Suspense>
     </section>
   );
+}
+
+async function LatestPosts() {
+  const posts = await getAllPosts();
+  return <Posts posts={posts} />;
 }
