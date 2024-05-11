@@ -27,11 +27,11 @@ export default function UserDropdown({ user }: { user: User }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        <DropdownMenuItem>
+        {/* <DropdownMenuItem>
           <Link className="w-full" href="#">
             个人主页
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuSeparator />
 

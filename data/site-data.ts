@@ -16,7 +16,7 @@ export const siteTitle = "UMi游研社";
 /**
  * 网站公告
  */
-export const siteAnnouncement = "网站建设中 - 功能和数据可能变化";
+export const siteAnnouncement = "网站建设中 - 测试结束时将清空数据";
 
 /**
  * 数据库分类别浏览的开头URL

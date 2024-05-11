@@ -24,6 +24,7 @@ export default function Search() {
         }}
         autoComplete="off"
         defaultValue={searchParams.get(PARAM_KEY_QUERY)?.toString()}
+        disabled
       />
       <SearchIcon />
     </div>

@@ -27,7 +27,7 @@ function Heading() {
 
 function DbSectionLinks() {
   return (
-    <ul className="row-span-2 grid grid-rows-4 gap-4 lg:row-span-1 lg:row-start-3 lg:grid-cols-4 lg:grid-rows-1">
+    <ul className="row-span-2 grid grid-rows-4 gap-4 lg:row-span-1 lg:row-start-3 lg:grid-cols-4 lg:grid-rows-1 sm:grid-cols-2">
       {umiDbSections.map((section) => (
         <SectionLink key={section.name} data={section} />
       ))}

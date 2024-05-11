@@ -33,7 +33,7 @@ export default async function MainHeader() {
 
 function ActionButtons({ user }: { user: User | undefined }) {
   return (
-    <div className="flex items-center gap-8 sm:hidden">
+    <div className="flex items-center gap-8 sm:gap-4">
       <ThemeToggle />
       {user == null ? (
         <div className="flex items-center gap-2 sm:hidden">

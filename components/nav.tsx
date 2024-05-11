@@ -24,7 +24,7 @@ export default function Nav() {
         })}
         <SplitLine />
         <NavLink href="/games">UMi的游戏</NavLink>
-        <NavLink href="#">关于我们</NavLink>
+        <NavLink href="/about">关于我们</NavLink>
       </ul>
     </nav>
   );
