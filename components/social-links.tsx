@@ -11,7 +11,7 @@ export default function SocialLinks() {
         label="B站账号">
         <BilibiliLogo className={logoClassName} />
       </SocialLink>
-      <SocialLink href="#" label="QQ群">
+      <SocialLink href="/assets/umi-qq-group.avif" label="QQ群">
         <QQLogo className={logoClassName} />
       </SocialLink>
     </ul>
