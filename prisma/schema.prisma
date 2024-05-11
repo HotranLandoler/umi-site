@@ -27,7 +27,7 @@ enum Category {
 
 model User {
   id               String            @id @default(uuid())
-  name             String            @unique
+  name             String
   email            String            @unique
   password         String
   emailVerified    DateTime?
@@ -35,9 +35,10 @@ model User {
   role             Role              @default(USER)
   posts            Post[]
   accounts         Account[]
-  sessions         Session[]
   Profile          Profile?
   VerificationCode VerificationCode?
+  likes            Like[]
+  comments         Comment[]
 }
 
 model Account {
@@ -61,24 +62,6 @@ model Account {
   @@id([provider, providerAccountId])
 }
 
-model Session {
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
-}
-
 model VerificationCode {
   id       Int      @id @default(autoincrement())
   code     String
@@ -95,21 +78,42 @@ model Profile {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  title     String    @db.VarChar(255)
   imageUrl  String?
   content   String
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
+  published Boolean   @default(false)
+  author    User      @relation(fields: [authorId], references: [id])
   authorId  String
   category  Category
   tags      Tag[]
+  likes     Like[]
+  comments  Comment[]
 }
 
 model Tag {
   id    Int    @id @default(autoincrement())
   name  String
   posts Post[]
+}
+
+model Like {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  post   Post   @relation(fields: [postId], references: [id])
+  postId Int
+
+  @@id([userId, postId])
+}
+
+model Comment {
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  post    Post   @relation(fields: [postId], references: [id])
+  postId  Int
+  content String
+
+  @@id([userId, postId])
 }

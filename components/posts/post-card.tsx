@@ -1,20 +1,13 @@
-import { $Enums, Post } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
 import { cn, formatDate } from "@/lib/utils";
-import { categoryBaseUrl, categoryMapping } from "@/data/site-data";
+import { categoryMapping } from "@/data/site-data";
+import type { PostFullType } from "@/data/post-data";
 
 type Props = {
-  post: Post & {
-    author: {
-      name: string;
-    };
-    tags: {
-      name: string;
-    }[];
-  };
+  post: PostFullType;
 };
 
 export default function PostCard({ post }: Props) {
@@ -37,11 +30,9 @@ export default function PostCard({ post }: Props) {
               alt={post.title}
             />
           )}
-          <Link
-            className="absolute left-2 top-2 inline-block rounded-full bg-secondary px-2 text-secondary-foreground"
-            href={`${categoryBaseUrl}/${categoryMapping[post.category].slug}`}>
+          <span className="absolute left-2 top-2 inline-block rounded-full bg-secondary px-2 text-secondary-foreground">
             {categoryMapping[post.category].name}
-          </Link>
+          </span>
         </div>
         <div className="p-4">
           <header className="mb-2">
@@ -78,11 +69,11 @@ export default function PostCard({ post }: Props) {
           <footer className="flex flex-wrap gap-2 border-t-2 border-muted pt-2 text-sm text-muted-foreground">
             <div className="flex gap-1">
               <CommentsIcon />
-              <span>{5}</span>
+              <span>{post._count.comments}</span>
             </div>
             <div className="flex gap-1">
               <LikesIcon />
-              <span>{29}</span>
+              <span>{post._count.likes}</span>
             </div>
             <div className="text-nowrap">预计阅读 {3} 分钟</div>
           </footer>
