@@ -12,7 +12,7 @@ export default async function Posts({ posts }: Props) {
   }
 
   return (
-    <div className="columns-4 lg:columns-3 sm:columns-2">
+    <div className="columns-3xs">
       {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
     </div>
   );
