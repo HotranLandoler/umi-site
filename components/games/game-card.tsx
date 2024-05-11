@@ -10,8 +10,9 @@ type Props = {
 export default function GameCard({ gameMeta, slug }: Props) {
   return (
     <Link
-      className="relative overflow-hidden rounded-lg transition-shadow hover:shadow-xl"
-      href={`/games/${slug}`}>
+      className="relative overflow-hidden rounded-lg transition-opacity hover:opacity-60"
+      href={`/games/${slug}`}
+      title={gameMeta.title}>
       <Image
         className="w-full bg-slate-200"
         src={gameMeta.coverImage}

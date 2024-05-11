@@ -26,11 +26,23 @@ export const categoryBaseUrl = "/category";
 /**
  * 数据库主要类别的标签
  */
-export const categoryFormatter = {
-  [Category.GAMEREC]: "游戏推荐",
-  [Category.KNOWLEDGE]: "知识分享",
-  [Category.TOOLS]: "工具资源",
-  [Category.HISTORY]: "岁月史书",
+export const categoryMapping = {
+  [Category.GAMEREC]: {
+    name: "游戏推荐",
+    slug: "gamerec",
+  },
+  [Category.KNOWLEDGE]: {
+    name: "知识分享",
+    slug: "knowledge",
+  },
+  [Category.TOOLS]: {
+    name: "工具资源",
+    slug: "tools",
+  },
+  [Category.HISTORY]: {
+    name: "岁月史书",
+    slug: "history",
+  },
 };
 
 /**
@@ -38,28 +50,28 @@ export const categoryFormatter = {
  */
 export const umiDbSections: PageData[] = [
   {
-    name: categoryFormatter[Category.GAMEREC],
+    name: categoryMapping[Category.GAMEREC].name,
     key: Category.GAMEREC,
     desc: "推荐喜欢的游戏",
-    slug: "gamerec",
+    slug: categoryMapping[Category.GAMEREC].slug,
   },
   {
-    name: categoryFormatter[Category.KNOWLEDGE],
+    name: categoryMapping[Category.KNOWLEDGE].name,
     key: Category.KNOWLEDGE,
     desc: "分享游戏设计与开发的知识",
-    slug: "knowledge",
+    slug: categoryMapping[Category.KNOWLEDGE].slug,
   },
   {
-    name: categoryFormatter[Category.TOOLS],
+    name: categoryMapping[Category.TOOLS].name,
     key: Category.TOOLS,
     desc: "游戏开发相关的好物",
-    slug: "tools",
+    slug: categoryMapping[Category.TOOLS].slug,
   },
   {
-    name: categoryFormatter[Category.HISTORY],
+    name: categoryMapping[Category.HISTORY].name,
     key: Category.HISTORY,
     desc: "我们社团的历史记录",
-    slug: "history",
+    slug: categoryMapping[Category.HISTORY].slug,
   },
 ];
 

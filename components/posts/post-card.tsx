@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import placeholderAvatar from "@/app/icon.svg";
 import { cn, formatDate } from "@/lib/utils";
-import { categoryFormatter } from "@/data/site-data";
+import { categoryBaseUrl, categoryMapping } from "@/data/site-data";
 
 type Props = {
   post: Post & {
@@ -21,82 +21,74 @@ export default function PostCard({ post }: Props) {
   const href = `/posts/${post.id}`;
 
   return (
-    <article className="mb-4 overflow-hidden rounded-lg bg-background">
-      <div
-        className={cn(
-          "relative",
-          { "h-8": post.imageUrl === null },
-          { "h-32": post.imageUrl !== null },
-        )}>
-        {post.imageUrl && (
-          <Image
-            className="w-full object-cover object-center"
-            src={post.imageUrl}
-            fill
-            alt={post.title}
-          />
-        )}
-        <Link
-          className="absolute left-2 top-2 inline-block rounded-full bg-secondary px-2 text-secondary-foreground"
-          href="#">
-          {categoryFormatter[post.category]}
-        </Link>
-      </div>
-      <div className="p-4">
-        <header className="mb-2">
-          <div className="mb-1 flex items-center gap-2 text-muted-foreground">
+    <Link href={href}>
+      <article className="mb-4 overflow-hidden rounded-lg bg-background transition-colors hover:bg-secondary/50">
+        <div
+          className={cn(
+            "relative",
+            { "h-8": post.imageUrl === null },
+            { "h-32": post.imageUrl !== null },
+          )}>
+          {post.imageUrl && (
             <Image
-              className="h-4 w-4 rounded-full"
-              src={placeholderAvatar}
-              width={50}
-              height={50}
-              alt=""
+              className="w-full object-cover object-center"
+              src={post.imageUrl}
+              fill
+              alt={post.title}
             />
-            <span>{post.author.name}</span>
-            <time
-              className="ml-auto"
-              dateTime={post.createdAt.toString()}
-              title={post.createdAt.toLocaleString("zh-cn")}>
-              {formatDate(post.createdAt)}
-            </time>
-          </div>
-          <h3 className="text-xl font-bold underline underline-offset-4">
-            <Link
-              className="transition-opacity hover:opacity-50"
-              href={`/posts/${post.id}`}>
-              {post.title}
-            </Link>
-          </h3>
-        </header>
-        <Link
-          className="mb-4 block text-muted-foreground hover:underline"
-          href={href}>
-          {post.content}
-        </Link>
-        <div className="mb-2 flex gap-1">
-          {post.tags.map(function renderTag(tag) {
-            return (
-              <span
-                key={tag.name}
-                className="rounded-full bg-muted px-2 text-sm text-muted-foreground">
-                {tag.name}
-              </span>
-            );
-          })}
+          )}
+          <Link
+            className="absolute left-2 top-2 inline-block rounded-full bg-secondary px-2 text-secondary-foreground"
+            href={`${categoryBaseUrl}/${categoryMapping[post.category].slug}`}>
+            {categoryMapping[post.category].name}
+          </Link>
         </div>
-        <footer className="flex flex-wrap gap-2 border-t-2 border-muted pt-2 text-sm text-muted-foreground">
-          <div className="flex gap-1">
-            <CommentsIcon />
-            <span>{5}</span>
+        <div className="p-4">
+          <header className="mb-2">
+            <div className="mb-1 flex items-center gap-2 text-muted-foreground">
+              <Image
+                className="h-4 w-4 rounded-full"
+                src={placeholderAvatar}
+                width={50}
+                height={50}
+                alt=""
+              />
+              <span>{post.author.name}</span>
+              <time
+                className="ml-auto"
+                dateTime={post.createdAt.toString()}
+                title={post.createdAt.toLocaleString("zh-cn")}>
+                {formatDate(post.createdAt)}
+              </time>
+            </div>
+            <h3 className="text-xl font-bold">{post.title}</h3>
+          </header>
+          <p className="mb-4 text-muted-foreground">{post.content}</p>
+          <div className="mb-2 flex gap-1">
+            {post.tags.map(function renderTag(tag) {
+              return (
+                <span
+                  key={tag.name}
+                  className="rounded-full bg-muted px-2 text-sm text-muted-foreground">
+                  {tag.name}
+                </span>
+              );
+            })}
           </div>
-          <div className="flex gap-1">
-            <LikesIcon />
-            <span>{29}</span>
-          </div>
-          <div className="text-nowrap">预计阅读 {3} 分钟</div>
-        </footer>
-      </div>
-    </article>
+          <footer className="flex flex-wrap gap-2 border-t-2 border-muted pt-2 text-sm text-muted-foreground">
+            <div className="flex gap-1">
+              <CommentsIcon />
+              <span>{5}</span>
+            </div>
+            <div className="flex gap-1">
+              <LikesIcon />
+              <span>{29}</span>
+            </div>
+            <div className="text-nowrap">预计阅读 {3} 分钟</div>
+          </footer>
+        </div>
+      </article>
+    </Link>
   );
 }
 
