@@ -9,7 +9,7 @@ export default async function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="mx-auto grid max-w-[96rem] grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-8 px-8 md:block">
+    <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr] grid-rows-[auto_1fr] px-4 md:block">
       <SideBar />
       <MainHeader />
       <main className="rounded-[2rem] bg-muted/50">

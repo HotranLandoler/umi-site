@@ -11,7 +11,7 @@ export default function Search() {
   const { replace } = useRouter();
 
   return (
-    <div className="relative flex sm:hidden">
+    <div className="relative flex md:hidden">
       <label htmlFor="search" className="sr-only">
         搜索
       </label>

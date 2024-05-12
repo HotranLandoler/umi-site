@@ -4,7 +4,7 @@ import Logo from "../logo";
 
 export default function SideBar() {
   return (
-    <div className="sticky top-0 row-span-2 max-h-screen self-start text-nowrap pt-8 md:hidden">
+    <div className="sticky top-0 row-span-2 mr-8 max-h-screen self-start text-nowrap pt-8 md:hidden">
       <div className="mx-auto max-w-32">
         <Header />
         <Nav />

@@ -10,7 +10,7 @@ export default function Hamburger({ isOpen, setIsOpen }: Props) {
   return (
     <Button
       variant="ghost"
-      className={cn("hamburger hamburger--squeeze hidden px-0 sm:block", {
+      className={cn("hamburger hamburger--squeeze hidden px-0 md:block", {
         "is-active": isOpen,
       })}
       onClick={handleClick}

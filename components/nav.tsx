@@ -64,7 +64,7 @@ export function MobileNav() {
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
       <div
         className={cn(
-          "mobile-nav hidden bg-background pt-36 text-center text-2xl transition-opacity sm:block",
+          "mobile-nav hidden bg-background pt-36 text-center text-2xl transition-opacity md:block",
           {
             open: isOpen,
           },

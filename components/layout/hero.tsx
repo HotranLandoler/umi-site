@@ -5,7 +5,7 @@ import AddPostLink from "../posts/add-post-link";
 
 export default function Hero() {
   return (
-    <section className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-6 lg:grid-cols-1">
+    <section className="mb-16 grid grid-cols-[3fr_1fr] grid-rows-[3fr_1fr] gap-6 lg:grid-cols-1 lg:grid-rows-[2fr_1fr_auto]">
       <Heading />
       <DbSectionLinks />
       <CTA />
@@ -16,7 +16,7 @@ export default function Hero() {
 function Heading() {
   return (
     <div className="flex items-end leading-10">
-      <h1 className="text-6xl/tight font-bold">
+      <h1 className="text-6xl/tight font-bold sm:text-4xl/tight">
         欢迎来到
         <br />
         UMi数据库主页
@@ -38,7 +38,7 @@ function DbSectionLinks() {
 function CTA() {
   return (
     <div>
-      <p className="mb-8">
+      <p className="mb-8 sm:mb-4">
         欢迎来到UMi的网上数据库，这里由UMi的正式成员参与贡献，旨在提供一个集中的高价值信息中介，也许你可以在这里找到很多普通互联网上很难遇到的东西！
       </p>
       <div className="flex gap-4">
