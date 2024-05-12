@@ -27,6 +27,7 @@ import RightArrow from "@/components/icons/right-arrow";
 import { ZodError } from "zod";
 import { toast } from "sonner";
 import { signUp } from "@/server/actions/auth-actions";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const form = useForm<SignUpFormValidator>({
@@ -38,6 +39,7 @@ export default function SignUp() {
     },
   });
 
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   return (
@@ -137,6 +139,7 @@ export default function SignUp() {
           return;
         }
         toast.success("注册成功");
+        router.push("/login");
       });
     });
   }
