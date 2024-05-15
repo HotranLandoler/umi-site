@@ -6,13 +6,13 @@ type Props = {
   posts: Awaited<ReturnType<typeof getAllPosts>>;
 };
 
-export default async function Posts({ posts }: Props) {
+export default function Posts({ posts }: Props) {
   if (!posts || posts.length === 0) {
     return <NoPost />;
   }
 
   return (
-    <div className="columns-3xs">
+    <div className="columns-3 sm:columns-2">
       {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
     </div>
   );

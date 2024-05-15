@@ -14,8 +14,8 @@ export default function PostCard({ post }: Props) {
   const href = `/posts/${post.id}`;
 
   return (
-    <Link href={href}>
-      <article className="mb-4 overflow-hidden rounded-lg bg-background transition-colors hover:bg-secondary/50">
+    <Link className="mb-4 block" href={href}>
+      <article className="break-inside-avoid overflow-hidden rounded-lg bg-background transition-colors hover:bg-secondary/50">
         <div
           className={cn(
             "relative",
@@ -36,17 +36,20 @@ export default function PostCard({ post }: Props) {
         </div>
         <div className="p-4">
           <header className="mb-2">
-            <div className="mb-1 flex items-center gap-2 text-muted-foreground">
-              <Image
-                className="h-4 w-4 rounded-full"
-                src={placeholderAvatar}
-                width={50}
-                height={50}
-                alt=""
-              />
-              <span>{post.author.name}</span>
+            <div className="mb-1 flex text-muted-foreground sm:flex-col">
+              <div className="flex items-center gap-2">
+                <Image
+                  className="h-4 w-4 rounded-full"
+                  src={placeholderAvatar}
+                  width={50}
+                  height={50}
+                  alt=""
+                />
+                <span>{post.author.name}</span>
+              </div>
+
               <time
-                className="ml-auto"
+                className="ml-auto sm:ml-0"
                 dateTime={post.createdAt.toString()}
                 title={post.createdAt.toLocaleString("zh-cn")}>
                 {formatDate(post.createdAt)}
@@ -54,7 +57,7 @@ export default function PostCard({ post }: Props) {
             </div>
             <h3 className="text-xl font-bold">{post.title}</h3>
           </header>
-          <p className="mb-4 text-muted-foreground">{post.content}</p>
+          <p className="mb-4 max-w-48 text-muted-foreground">{post.content}</p>
           <div className="mb-2 flex gap-1">
             {post.tags.map(function renderTag(tag) {
               return (
