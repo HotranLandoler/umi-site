@@ -27,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { umiDbSections } from "@/data/site-data";
 import { PostFormValidator, postSchema } from "@/lib/schemas/post-schema";
 import { createPost } from "@/server/actions/post-actions";
+import TiptapEditor from "@/components/posts/tiptap-editor";
 
 export default function CreatePost() {
   const form = useForm<PostFormValidator>({
@@ -99,13 +100,7 @@ export default function CreatePost() {
               <FormItem className="mb-8">
                 <FormLabel>正文</FormLabel>
                 <FormControl>
-                  <Input
-                    className={cn({
-                      "ring-red-500": form.formState.errors.content,
-                    })}
-                    type="text"
-                    {...field}
-                  />
+                  <TiptapEditor />
                 </FormControl>
                 <FormMessage />
               </FormItem>
