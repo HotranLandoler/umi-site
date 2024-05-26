@@ -1,4 +1,5 @@
 import { Category } from "@prisma/client";
+import type { JSONContent } from "@tiptap/react";
 import { z } from "zod";
 
 export const postSchema = z.object({
@@ -6,7 +7,7 @@ export const postSchema = z.object({
     message: "标题不可为空",
   }),
   category: z.nativeEnum(Category),
-  content: z.string(),
+  content: z.custom<JSONContent>(),
 });
 
 export type PostFormValidator = z.infer<typeof postSchema>;

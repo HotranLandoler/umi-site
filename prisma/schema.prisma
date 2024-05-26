@@ -83,7 +83,7 @@ model Post {
   updatedAt DateTime  @updatedAt
   title     String    @db.VarChar(255)
   imageUrl  String?
-  content   String
+  content   Json
   published Boolean   @default(false)
   author    User      @relation(fields: [authorId], references: [id])
   authorId  String

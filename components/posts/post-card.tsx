@@ -57,7 +57,6 @@ export default function PostCard({ post }: Props) {
             </div>
             <h3 className="text-xl font-bold">{post.title}</h3>
           </header>
-          <p className="mb-4 max-w-48 text-muted-foreground">{post.content}</p>
           <div className="mb-2 flex gap-1">
             {post.tags.map(function renderTag(tag) {
               return (
@@ -69,7 +68,7 @@ export default function PostCard({ post }: Props) {
               );
             })}
           </div>
-          <footer className="flex flex-wrap gap-2 border-t-2 border-muted pt-2 text-sm text-muted-foreground">
+          <footer className="flex flex-wrap gap-2 pt-2 text-sm text-muted-foreground">
             <div className="flex gap-1">
               <CommentsIcon />
               <span>{post._count.comments}</span>

@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useTransition } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -35,7 +37,17 @@ export default function CreatePost() {
     defaultValues: {
       title: "",
       category: umiDbSections[0].key,
-      content: "",
+    },
+  });
+
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: "<p>Hello World! 🌎️</p>",
+    editorProps: {
+      attributes: {
+        class:
+          "prose max-w-none w-full rounded-md border border-input bg-background p-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+      },
     },
   });
 
@@ -93,19 +105,12 @@ export default function CreatePost() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem className="mb-8">
-                <FormLabel>正文</FormLabel>
-                <FormControl>
-                  <TiptapEditor />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <FormItem className="mb-8">
+            <FormLabel>正文</FormLabel>
+            <FormControl>
+              <EditorContent editor={editor} />
+            </FormControl>
+          </FormItem>
 
           <Button className="w-full" type="submit" disabled={isPending}>
             {isPending && <LoaderCircle className="animate-spin" />}
@@ -116,13 +121,20 @@ export default function CreatePost() {
     </div>
   );
 
-  async function onSubmit(values: PostFormValidator) {
-    startTransition(() => {
-      createPost(values).then(function onPostCreated(result) {
-        if (result && !result.success) {
-          toast.error(result.error);
-        }
-      });
+  function onSubmit(values: PostFormValidator) {
+    startTransition(() => handleCreatePost(values));
+  }
+
+  function handleCreatePost(values: PostFormValidator) {
+    if (!editor) {
+      toast.error("未知错误");
+      return;
+    }
+    values.content = editor.getJSON();
+    createPost(values).then(function onPostCreated(result) {
+      if (result && !result.success) {
+        toast.error(result.error);
+      }
     });
   }
 }
