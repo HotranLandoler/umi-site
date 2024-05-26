@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getPostById } from "@/data/post-data";
-import TiptapEditor from "@/components/posts/tiptap-editor";
+import TipTapRenderer from "@/components/posts/tiptap-renderer";
 import { JSONContent } from "@tiptap/react";
 
 type Props = {
@@ -24,7 +24,7 @@ export default async function PostPage({ params: { id } }: Props) {
   return (
     <article className="main-container">
       <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
-      <TiptapEditor editable={false} content={post.content as JSONContent} />
+      <TipTapRenderer content={post.content as JSONContent} />
     </article>
   );
 }
