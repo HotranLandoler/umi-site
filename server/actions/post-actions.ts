@@ -28,3 +28,25 @@ export async function createPost(
 
   redirect(`/posts/${postId}`);
 }
+
+export async function likePost(postId: number) {
+  const session = await auth();
+  if (!session?.user || !session.user.id) {
+    return { success: false, error: "需要登录才能点赞" };
+  }
+
+  await prisma.like.create({
+    data: {
+      postId: postId,
+      userId: session.user.id,
+    },
+  });
+
+  const newLikesCount = await prisma.like.count({
+    where: {
+      postId: postId,
+    },
+  });
+
+  return { success: true, newLikesCount };
+}
