@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useTransition } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 import { umiDbSections } from "@/data/site-data";
 import { PostFormValidator, postSchema } from "@/lib/schemas/post-schema";
 import { createPost } from "@/server/actions/post-actions";
-import TiptapEditor from "@/components/posts/tiptap-editor";
+import TipTapEditor from "@/components/posts/tiptap-editor";
 
 export default function CreatePost() {
   const form = useForm<PostFormValidator>({
@@ -42,7 +42,7 @@ export default function CreatePost() {
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: "<p>Hello World! 🌎️</p>",
+    content: "",
     editorProps: {
       attributes: {
         class:
@@ -108,7 +108,7 @@ export default function CreatePost() {
           <FormItem className="mb-8">
             <FormLabel>正文</FormLabel>
             <FormControl>
-              <EditorContent editor={editor} />
+              <TipTapEditor editor={editor} />
             </FormControl>
           </FormItem>
 
@@ -130,7 +130,9 @@ export default function CreatePost() {
       toast.error("未知错误");
       return;
     }
-    values.content = editor.getJSON();
+
+    values.content = JSON.parse(JSON.stringify(editor.getJSON()));
+
     createPost(values).then(function onPostCreated(result) {
       if (result && !result.success) {
         toast.error(result.error);
