@@ -15,13 +15,18 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
+import UserAvatar from "./user-avatar";
 
-export default function UserDropdown({ user }: { user: User }) {
+type Props = {
+  user: User;
+};
+
+export default function UserDropdown({ user }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost">
-          {user.name}
+          <UserAvatar userImage={user.image} username={user.name} />
           <ChevronDown size={16} />
         </Button>
       </DropdownMenuTrigger>

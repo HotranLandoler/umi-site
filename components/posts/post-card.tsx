@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Prisma } from "@prisma/client";
 
 import placeholderAvatar from "@/app/icon.svg";
 import { cn, formatDate } from "@/lib/utils";
 import { categoryMapping } from "@/data/site-data";
-import type { PostFullType } from "@/data/post-data";
+import { getAllPosts } from "@/data/post-data";
+import UserAvatar from "../user-avatar";
 
 type Props = {
-  post: PostFullType;
+  post: Prisma.PromiseReturnType<typeof getAllPosts>[number];
 };
 
 export default function PostCard({ post }: Props) {
@@ -37,16 +39,10 @@ export default function PostCard({ post }: Props) {
         <div className="p-4">
           <header className="mb-2">
             <div className="mb-1 flex text-muted-foreground sm:flex-col">
-              <div className="flex items-center gap-2">
-                <Image
-                  className="h-4 w-4 rounded-full"
-                  src={placeholderAvatar}
-                  width={50}
-                  height={50}
-                  alt=""
-                />
-                <span>{post.author.name}</span>
-              </div>
+              <UserAvatar
+                userImage={post.author.image}
+                username={post.author.name}
+              />
 
               <time
                 className="ml-auto sm:ml-0"
