@@ -1,6 +1,7 @@
 import NextAuth, { User, DefaultSession } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
+import type { Adapter } from "next-auth/adapters";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { verify } from "@node-rs/argon2";
 
@@ -12,7 +13,7 @@ import type { Role } from "@prisma/client";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as Adapter,
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, user }) {
@@ -24,7 +25,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (session.user) {
         if (token.role) {
-          session.user.role = token.role;
+          session.user.role = token.role as Role;
         }
         if (token.sub) {
           session.user.id = token.sub;
